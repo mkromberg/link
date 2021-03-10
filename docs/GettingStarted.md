@@ -1,48 +1,46 @@
 # Getting started with `Link`
 
-## Creating Links
+### Linking to an Existing Directory
 
-Links are created using [Link.Create](Link.Create.md), or the corresponding user command `]LINK.Create`.
-Both of these take two arguments: the name of a namespace and the corresponding directory 
-that it should be linked to. So long as there is only content in either the namespace or
-the directory (or neither), pre-existing content will be replicated on the other side of the link,
-and all available synchronisation will be enabled depending on the platform.
+In daily use, the assumption is that your source already exists in one or more file system folders that you are managing using an SCM like Git, or taking copies of at suitable intervals using some other mechanism. You will use [Link.Create](Link.Create.md) to load the source code into the workspace so that you can work with it. For example, the following user command load all the code in the folder `/home/sally/myapp` into a namespace called `myapp` , creating the namespace if it does not exist: 
 
-If both the namspace and the directory have pre-existing content, the `source` option 
-*must* be specified as one of `ns`, `dir`, or `none`, and content will be copied in one direction,
-potentially overwriting any content on the other side. Use this with caution!
+```      apl
+      ]link.Create myapp /home/sally/myapp
+```
 
-## Create a Directory from a Namespace
+The first argument to the user command, and to the corresponding API function `⎕SE.Link.Create` is the name of a namespace (in the case of the function you could also use a reference to an existing namespace). The second argument is a directory name.
 
-To get started, we will create a namespace and populate it with three defined functions in order to 
-have something to work with. In this example, the functions are created under program control; under normal use
-the functions would probably be created using the editor:
+Of course, you might not already have a source directory, so let's look at how you might create one.
+
+### Starting a New project
+
+If you are starting a brand new project, you can use the same command as above, but you will need to create either the namespace or the folder (or both) first. For the command to succeed, at least one of them needs to exist and exactly one of them needs to contain some code.
+
+* If neither of them exist, Link.Create will reject the request on suspicion that there is a typo, in order to avoid silently creating an empty directory by mistake.
+* If both of them exist AND contain code, and the code is not identical on both sides, Link.Create will fail and you will need to specify the  `source` option, whether the namespace or the directory should be considered to be the source. Incorrectly specifying the source will potentially overwriting any content on the other side, so use this with extreme caution!
+
+To illustrate, we will create a namespace and populate it with two dfns and one tradfn, in order to have something to work with. In this example, the functions are created under program control; under normal use the functions would probably be created using the editor:
+
 ```apl
-      'stats' ⎕NS ⍬
-      stats.⎕FX 'Root←{⍺←2' '⍵*÷⍺}'
+      'stats' ⎕NS ⍬ ⍝ Create an empty namespace
       stats.⎕FX 'mean←Mean vals;sum' 'sum←+⌿,vals' 'mean←sum÷1⌈⍴,vals'
+      stats.Root←{⍺←2 ⋄ ⍵*÷⍺}
       stats.StdDev←{2 Root(+.×⍨÷⍴),⍵-Mean ⍵}
 ```
-Assuming that the directory /tmp/stats is empty or does not exist, we can now link the stats
-namespace to it using the [Link.Create](Link.Create.md) API function, or as in this case using
-the user command with the same name:
+We could now create a source directory using [Link.Export](Link.Export.md), and then use [Link.Create](Link.Create.md) to create a link to it. However, [Link.Create](Link.Create.md) can do this in one step: assuming that the directory `/tmp/stats` is empty or does not exist, the following command will detect that there is code in the workspace but not in the directory, and create a link based on the namespace that we just created:
+
 ```apl
       ]LINK.Create stats /tmp/stats -source=ns
 Linked: #.stats ←→ C:\tmp\stats
 ```
-The double arrow `←→` in the output indicates that bi-directional synchronisation is active.
-We can verify that the three expected files have been created:
+The double arrow `←→` in the output indicates that synchronisation is bi-directional. We can verify that the three expected files have been created:
+
 ```apl
       ls←⎕NINFO⍠1 ⍝ List files, allowing wildcards
       ls '/tmp/stats/*'
   /tmp/stats/Mean.aplf  /tmp/stats/Root.aplf  /tmp/stats/StdDev.aplf  
 ```
-## Start or Resume Work based on a Directory
-
-Once the directory exists and contains our source code, we can start work in an APL session using exactly the same
-command as we used to create the directory, but there's no need to specify the source since `dir` is the default. This time (so long
-as the target namespace does not exist in the active
-workspace), the directory is used as the source:
+Let's verify that our source directory can be used to re-build the original namespace::
 
 ```apl
       )CLEAR
@@ -53,11 +51,15 @@ Linked: stats ←→ C:\tmp\stats
  Mean  Root  StdDev
 ```
 
-## Adding Content
+If you have an existing workspace containing several namespaces, code in the root of the workspace, or variables, you will want to read about [converting your workspace to text source](ExportingSource.md).
 
-Since bi-directional synchronisation has been set up, we are free to add content either by
-adding new source files in the directory, or using the editor inside the APL session.
-For example, we could add a `Median` function:
+### Working with the Code
+
+Once the link is set up, you can work with your code using the Dyalog IDE exactly as you would if you were not using Link; the only difference being that Link will ensure that any changes you make to the code within the `stats`namespace are instantly copied to the corresponding source file.
+
+Conversely, if you are new to Dyalog APL, and have a favourite editor, you can use it to edit the source files directly, and any change that you make will be replicated in the active workspace. If you do not have a File System Watcher available on your platform, it may be a few seconds before the [Crawler](Crawler.md) kicks in and detects external changes.
+
+If you use editors inside or outside the APL system to add new functions, operators, namespaces or classes,  the corresponding change will be made on the other side of the link. For example, we could add a `Median` function:
 
 ```apl
       )ED stats.Median
@@ -72,9 +74,7 @@ Median←{
  }
 ```
 
-Closing the edit window (using the <kbd>Esc</kbd> key) will not only fix the definition of the
-function in the namespace, it will also cause a new file to be created containing the
-source code for the new function.
+When the editor fixes the definition of the function in the workspace, Link will create a new file:
 
 
 ```apl
@@ -82,19 +82,39 @@ source code for the new function.
   /tmp/stats/Mean.aplf  /tmp/stats/Median.aplf  /tmp/stats/Root.aplf  /tmp/stats/StdDev.aplf  
 ```
 
-If full synchronisation is not enabled,
-[Link.Refresh](Link.Refresh.md) can be used to re-synchronise
-the namespace and directory.
+### Changes made Outside the Editor
 
-## Changes made Under Program control
+When changes are made using the editor which is built-in to Dyalog IDE or RIDE, source files are updated immediately. Changes made outside the editor will not immediately be picked up. This includes:
 
-Note that external source files are only updated when items are modified using the editor.
-Changes made under program control using assignment (`←`) or system functions 
-like `⎕CY`, `⎕NS`, `⎕EX`, `⎕FX` or `⎕FIX`, or the APL line "`∇`" editor, or system commands like `)NS`, `)COPY`, `)ERASE` will ***NOT*** trigger synchronisation.
-This is intentional and not expected to change. 
+* Source code created or changed using assignment (`←`), `⎕FX`  or `⎕FIX` - or the APL line "`∇`" editor.
+* Definitions moved between workspaces or namespaces using `⎕CY`, `⎕NS` or `)COPY`.
+* Definitions erased using `⎕EX`or `)ERASE`
 
-If the user wants to make changes that are reflected to the link under program control, they need to call the functions [Link.Fix](Link.Fix.md) and [Link.Expunge](Link.Expunge.md) to inform link that a change which has been made under program control should be considered a change to application source, and cause synchronisation. 
+By default, a configurable [Crawler](Crawler.md) will wake up ever few seconds and scan your workspace and the source directory for any changes that were not detected.
 
-Similarly, [Link.Notify](Link.Notify.md) can be used to bring an external change into the active workspace, even though
-synchronisation is not active.
+If you write tools which modify source code under program control, it is a good idea to call the API functions [Link.Fix](Link.Fix.md) or [Link.Expunge](Link.Expunge.md) to inform link that you have made the change, without relying on the crawler being active. The crawler is configurable and may have been disabled by the user.
+
+If you update the source files under program control and inbound synchronisation is not enabled, you can use [Link.Notify](Link.Notify.md) to let Link know about an external change that you would like to bring into the workspace.
+
+### Arrays
+
+By default, Link does not consider arrays to be part of the source code of an application and will not write arrays to source files unless you explicitly request it. Link is not intended to be used as a database management system; if you have arrays that are modified during the normal running of your application, we recommend that you store that data in an RDBMS or other files that are managed by the application code, rather than using Link for this.
+
+If you have arrays that represent error tables, range definitions or other *constant* inputs to the application, that should be considered to be part of the source code, you can cause them to be written to file using [Link.Add](Link.Add.md):
+
+```apl
+      stats.Directions←'North' 'South' 'East' 'West'
+      ]Link.Add stats.Directions
+Added: #.stats.Directions
+```
+
+Note that by default, source files for arrays are presumed to define the initial value of the array when the application starts. By default, changes made to arrays will not be picked up by a crawler even if the array was originally loaded from a source file.  You always need to explicitly call Link.Add to update the source file with a new value. 
+
+Although changes to the array in the workspace are not automatically written to file, changes made to the source files will immediately be reflected in the workspace.
+
+### Setting up Development and Runtime Environments
+
+We have seen how to use `]Link.Create`to load textual source into the workspace in order to work with it. As your project grows, you will probably want to split your code into modules, for example application code in one directory and shared utilities in another - and maybe also run some code to get things set up.
+
+Next, we will look at [Setting up Development and Runtime Environments](Setup.md), so that you don't have to type the same sequence of things over and over again to get started with development - or running the application.
 

@@ -1,4 +1,4 @@
-# Overview
+# Technical Details and Limitations
 
 As described on the [Home](Home.md) page, Link streamlines working with code in text files by mapping workspace content and filesystem content in a one-to-one relationship. Each unscripted namespace (created by `⎕NS` rather than `⎕FIX`) is associated with a directory of matching name while other workspace content (defined functions, scripted namespaces, classes and interfaces, arrays) are associated with one file per item. Depending on which synchronisation options have been
 selected, Link will synchronise changes in none, one or both directions.

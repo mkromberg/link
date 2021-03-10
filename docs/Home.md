@@ -1,28 +1,73 @@
-# Link documentation
+# Introduction to Link
 
-***Link*** facilitates the use of text files for APL source code
-by associating **namespaces** inside the active workspace
-to **directories** containing source code. Functionality provided by links include:
+This is a introduction to Link for users of Dyalog APL installations that include Link 3.0 (version 18.1 or later). If you have an earlier version of APL or Link, you may want to check out one or more of the following pages before continuing: 
 
-* **Keeping Source Files Up-to-date:** 
-Typically, links are configured to replicate any changes made using the Dyalog editor
-and tracer to external source files. As a result, the source files are kept up-to-date
-without further action by the developer.
+* [Migrating to Link 3.0 from from Link 2.0](Link2toLink3.md)
+* [Migrating to Link 3.0 from SALT](SALTtoLink.md)
+* [Installation instructions](Installation.md) If you are using a version of Dyalog APL earlier than 18.1, or you want to pick Link up directly from the GitHub repository rather than use the version installed with APL.
 
-* **Integrating External Changes into the workspace:**
-Links is also typically configured to replicate changes made to the text files
-(using external tools such as editors and source code management systems) inside the active
-APL workspace.
+## What is Link?
 
-* **Loading and Saving Source Files:**
-Link can also be used to copy source code into or out of an APL session without subsequently
-detecting and replicating changes made in- or outside the APL system.
+***Link*** makes Unicode text files the recommended way to store APL source code, rather than the traditional binary workspace. The benefits of using Link and text files include:
 
-Note that Link is ***not a source code management system***,
-but is designed to support the use of tools like Git or Subversion to manage the linked directories.
+* It is easy to use source code management tools like Git or Subversion to manage your code.
 
-For more information:
-* [Installation instructions](Installation.md)
-* [Overview](Overview.md)
-* [Getting started](GettingStarted.md)
-* [Full API reference](API.md)
+  *Note that an SCM is not a requirement for using Link*; without an SCM you just need your own strategy for taking suitable copies of your source files, as with workspace files.
+
+* Changes to your code are **immediately** written to file: there is no need to remember to save your work.
+  You normally make the record permanent with a *commit* to your source code management system.
+
+* Unlike binary workspaces, text source can be shared between different versions of APL - or even with human readers or writers don't have Dyalog APL installed at all.
+
+* Source code stored in external files is preserved exactly as typed, rather than being reconstructed from the tokenised form.
+
+Although an SCM is not a requirement for Link: if you are not already using a source code management system, we ***highly*** recommend making the effort to [learn about - and install Git](SCMforAPLers.md).
+
+## Link is NOT...
+
+* **A source code management system**: we recommend using Git to manage the text files that Link will help you create and edit using Dyalog APL.
+
+* **A database management system:** although Link is able to store APL arrays using a pre-release of the *literal array notation*, this is only intended to be used for constants which you consider to be part of the source code of your applications. Although all functions and operators that you define will be written to source files by default, arrays are only written to source files upon request see [Link.Add](Link.Add.md) and optional parameters of [Link.Export](Link.Export.md). Application data belongs in a real DBMS or in files managed by the application.
+
+## Link Fundamentals
+
+Link establishes ***links*** between one or more **namespaces** in the active APL workspace and corresponding **directories** containing APL source code in Unicode test files. For example, the following user command invocation will link a namespace called `myapp` to the folder `/home/sally/myapp`:
+
+```      apl
+      ]link.Create myapp /home/sally/myapp
+```
+
+If `myapp` contains sub-directories, a namespace hierarchy corresponding to the directory structure will be created within the `myapp` namespace. By default, the link is bi-directional, which means that Link will:
+
+* **Keep Source Files up-to-date:** 
+Any changes made to code in the active workspace using the tracer and editor are immediately replicated in the corresponding text files.
+* **Keep the Workspace up-to-date:**
+Any changes made to the external files using a text editor, or resulting from an SCM action such as rolling back or switching to different branch, will immediately be reflected in the active workspace.
+
+You can use `]Link.Create`several times to create multiple links, and you can also use `]Link.Import`or `]Link.Export` to import source code into the workspace or export code to external files *without* creating links that will respond to subsequent changes. It is also possible to set links up that only react to changes at one end of the link.
+
+### Link Functions vs. User Commands
+
+For every user command like `]Link.Create`, there is a corresponding function with a name like `⎕SE.Link.Create`.  The user commands are intended for experimentation or simple applications which do consist of a single directory and are only used interactively.
+
+If there are several steps involved in creating your application runtime environment, or you need to deploy your application in such a way that it starts up automatically, you will be better off using the functions and calling them from a function or script that you use to perform initialisation.
+
+The details of the arguments to the functions and the user commands can be found in the [API Reference](API.md).
+
+## Further Reading
+
+To continue your journey towards getting set up with Link, you will want to read:
+
+* [Getting started with Link](GettingStarted.md), for a discussion of how to set up Link-based development and runtime environments.
+* [Technical Details and Limitations](Overview.md), if you want to know about the full range of APL objects that are supported, and some of the edge cases that are not yet supported by Link.
+
+If you have an existing APL application that you want to move to Link, you may want to read one of the following texts first:
+
+* [Converting your workspace to text source](ExportingSource.md) (if you already have an existing body of APL code that is not in Link, you may want to read).
+* [Migrating to Link 3.0 from SALT](SALTtoLink.md), if you are already managing text source using Link's predecessor SALT.
+
+## Frequently Asked Questions
+
+* [How does Link work?](HowDoesItWork.md)
+* [Are workspaces dead now?](Workspaces.md)
+
