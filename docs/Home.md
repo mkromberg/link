@@ -4,7 +4,9 @@ This is a introduction to Link for users of Dyalog APL installations that includ
 
 * [Migrating to Link 3.0 from from Link 2.0](Link2toLink3.md)
 * [Migrating to Link 3.0 from SALT](SALTtoLink.md)
-* [Installation instructions](Installation.md) If you are using a version of Dyalog APL earlier than 18.1, or you want to pick Link up directly from the GitHub repository rather than use the version installed with APL.
+* [Installation instructions](Installation.md) 
+  
+  If you are using a version of Dyalog APL earlier than 18.1, or you want to pick Link up directly from the GitHub repository rather than use the version installed with APL.
 
 ## What is Link?
 
@@ -27,7 +29,11 @@ Although an SCM is not a requirement for Link: if you are not already using a so
 
 * **A source code management system**: we recommend using Git to manage the text files that Link will help you create and edit using Dyalog APL.
 
-* **A database management system:** although Link is able to store APL arrays using a pre-release of the *literal array notation*, this is only intended to be used for constants which you consider to be part of the source code of your applications. Although all functions and operators that you define will be written to source files by default, arrays are only written to source files upon request see [Link.Add](Link.Add.md) and optional parameters of [Link.Export](Link.Export.md). Application data belongs in a real DBMS or in files managed by the application.
+* **A database management system:** 
+  
+  Link is able to store APL arrays using a pre-release of the *literal array notation*, but this is only intended to be used for constants which you consider to be part of the source code of your applications. Although all functions and operators that you define will be written to source files by default, arrays are only written to source files upon request see [Link.Add](Link.Add.md) and optional parameters of [Link.Export](Link.Export.md). 
+   
+   Application data belongs in a real DBMS or in files managed by the application.
 
 ## Link Fundamentals
 
@@ -46,11 +52,11 @@ Any changes made to the external files using a text editor, or resulting from an
 
 You can use `]Link.Create`several times to create multiple links, and you can also use `]Link.Import`or `]Link.Export` to import source code into the workspace or export code to external files *without* creating links that will respond to subsequent changes. It is also possible to set links up that only react to changes at one end of the link.
 
-### Link Functions vs. User Commands
+### Link API vs. User Commands
 
-For every user command like `]Link.Create`, there is a corresponding function with a name like `⎕SE.Link.Create`.  The user commands are intended for experimentation or simple applications which do consist of a single directory and are only used interactively.
+For every user command like `]Link.Create`, there is a corresponding function with a name like `⎕SE.Link.Create`.  The user commands are intended for experimentation or simple applications which do consist of a single directory, and are supposed to be used interactively only.
 
-If there are several steps involved in creating your application runtime environment, or you need to deploy your application in such a way that it starts up automatically, you will be better off using the functions and calling them from a function or script that you use to perform initialisation.
+If there are several steps involved in creating your application runtime environment, or you need to deploy your application in such a way that it starts up automatically, you will be better off using the API functions, and calling them from a function or script that you use to perform initialisation.
 
 The details of the arguments to the functions and the user commands can be found in the [API Reference](API.md).
 
@@ -63,7 +69,7 @@ To continue your journey towards getting set up with Link, you will want to read
 
 If you have an existing APL application that you want to move to Link, you may want to read one of the following texts first:
 
-* [Converting your workspace to text source](ExportingSource.md) (if you already have an existing body of APL code that is not in Link, you may want to read).
+* [Converting your workspace to text source](ExportingSource.md) ~~(if you already have an existing body of APL code that is not in Link, you may want to read).~~ _This needs clarification: nothing can be "in Link", and I am not sure what you want to say here_
 * [Migrating to Link 3.0 from SALT](SALTtoLink.md), if you are already managing text source using Link's predecessor SALT.
 
 ## Frequently Asked Questions
