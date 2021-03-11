@@ -17,7 +17,7 @@ Of course, you might not already have a source directory, so let's look at how y
 If you are starting a brand new project, you can use the same command as above, but you will need to create either the namespace or the folder (or both) first. For the command to succeed, at least one of them needs to exist and exactly one of them needs to contain some code.
 
 * If neither of them exist, Link.Create will reject the request on suspicion that there is a typo, in order to avoid silently creating an empty directory by mistake.
-* If both of them exist AND contain code, and the code is not identical on both sides, Link.Create will fail and you will need to specify the  `source` option, whether the namespace or the directory should be considered to be the source. Incorrectly specifying the source will potentially overwriting any content on the other side, so use this with extreme caution!
+* If both of them exist AND contain code, and the code is not identical on both sides, Link.Create will fail and you will need to specify the  `source` option, whether the namespace or the directory should be considered to be the source. Incorrectly specifying the source will potentially overwrite any content on the other side, so use this with extreme caution!
 
 To illustrate, we will create a namespace and populate it with two dfns and one tradfn, in order to have something to work with. In this example, the functions are created under program control; under normal use the functions would probably be created using the editor:
 
@@ -55,7 +55,7 @@ If you have an existing workspace containing several namespaces, code in the roo
 
 ### Working with the Code
 
-Once the link is set up, you can work with your code using the Dyalog IDE exactly as you would if you were not using Link; the only difference being that Link will ensure that any changes you make to the code within the `stats`namespace are instantly copied to the corresponding source file.
+Once the link is set up, you can work with your code using the Dyalog IDE (or RIDE) exactly as you would if you were not using Link; the only difference being that Link will ensure that any changes you make to the code within the `stats`namespace are instantly copied to the corresponding source file.
 
 Conversely, if you are new to Dyalog APL, and have a favourite editor, you can use it to edit the source files directly, and any change that you make will be replicated in the active workspace. If you do not have a File System Watcher available on your platform, it may be a few seconds before the [Crawler](Crawler.md) kicks in and detects external changes.
 
@@ -86,13 +86,13 @@ When the editor fixes the definition of the function in the workspace, Link will
 
 When changes are made using the editor which is built-in to Dyalog IDE or RIDE, source files are updated immediately. Changes made outside the editor will not immediately be picked up. This includes:
 
-* Source code created or changed using assignment (`←`), `⎕FX`  or `⎕FIX` - or the APL line "`∇`" editor.
+* Definitions created or changed using assignment (`←`), `⎕FX`  or `⎕FIX` - or the APL line "`∇`" editor.
 * Definitions moved between workspaces or namespaces using `⎕CY`, `⎕NS` or `)COPY`.
 * Definitions erased using `⎕EX`or `)ERASE`
 
 By default, a configurable [Crawler](Crawler.md) will wake up ever few seconds and scan your workspace and the source directory for any changes that were not detected.
 
-If you write tools which modify source code under program control, it is a good idea to call the API functions [Link.Fix](Link.Fix.md) or [Link.Expunge](Link.Expunge.md) to inform link that you have made the change, without relying on the crawler being active. The crawler is configurable and may have been disabled by the user.
+If you write tools which modify source code under program control, it is a good idea to call the API functions [Link.Fix](Link.Fix.md) or [Link.Expunge](Link.Expunge.md) to inform Link that you have made the change, without relying on the crawler being active. The crawler is configurable and may have been disabled by the user.
 
 If you update the source files under program control and inbound synchronisation is not enabled, you can use [Link.Notify](Link.Notify.md) to let Link know about an external change that you would like to bring into the workspace.
 
@@ -100,7 +100,7 @@ If you update the source files under program control and inbound synchronisation
 
 By default, Link does not consider arrays to be part of the source code of an application and will not write arrays to source files unless you explicitly request it. Link is not intended to be used as a database management system; if you have arrays that are modified during the normal running of your application, we recommend that you store that data in an RDBMS or other files that are managed by the application code, rather than using Link for this.
 
-If you have arrays that represent error tables, range definitions or other *constant* inputs to the application, that should be considered to be part of the source code, you can cause them to be written to file using [Link.Add](Link.Add.md):
+If you have arrays that represent error tables, range definitions or other *constant* data that is actually part of the application, you can cause them to be written to file using [Link.Add](Link.Add.md):
 
 ```apl
       stats.Directions←'North' 'South' 'East' 'West'
