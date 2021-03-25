@@ -17,7 +17,7 @@ Linked: #.linkdemo ←→ /users/sally/linkdemo
 Our application is going to prompt the user for an input array and output the mean and standard deviation of the data, until the user inputs an empty array. Obviously, the code should be enhanced to validate the input and perhaps trap errors, but that is left as an exercise for the reader.
 
 ```apl
-     ∇ Run;data                                           
+     ∇ Main;data                                           
 [1]   ⍝ Compute Mean and StdDev until user inputs an empty array
 [2]                                                             
 [3]    :Repeat                                                  
@@ -36,7 +36,7 @@ We will need the `stats` code in the workspace as well, of course. Since we only
       ]link.import stats /users/sally/stats
 Imported: #.starts ← c:\tmp\stats
 
-      linkdemo.Run
+      linkdemo.Main
       Enter some numbers:
 ⎕:
       50+?100⍴100
@@ -62,19 +62,20 @@ Starting with version 18.0, it is simple to launch the interpreter from a text f
 
 This specifies an APL session with a MAXWS of 100 megabytes, which will start by creating the `linkdemo`  namespace and calling `linkdemo.Start`. The namespace will be created using the directory named by the result of the function `⎕SE.Link.LaunchDir`; this will be the directory that the CONFIGFILE parameter refers to (or, if there is no CONFIGFILE, the directory referred to by the LOAD parameter).
 
-The function `linkdemo.Start` will bring in the `stats` library using `Link.Import`: since we are not developers of this library, we don't want to accidentally modify it during our testing. It also creates the name `ST` to point to the stats library, which means that our `Run` function can use more pleasant names, like `ST.Mean` in place of `#.stats.Mean` - which also makes it easier to relocate that module in the workspace:
+The function `linkdemo.Start` will bring in the `stats` library using `Link.Import`: since we are not developers of this library, we don't want to create a bi-directional link that might allow us to accidentally modify it during our testing. It also creates the name `ST` to point to the stats library, which means that our `Run` function can use more pleasant names, like `ST.Mean` in place of `#.stats.Mean` - which also makes it easier to relocate that module in the workspace:
 
 ```apl
      ∇ Start run                                                                       
 [1]   ⍝ Establish development environment for the linkdemo application                 
 [2]                                                                                    
 [3]    ⎕IO←⎕ML←1                                                                       
-[4]    ⎕SE.Link.Import '#.stats' '/home/sally/stats' ⍝ Load but do NOT Link the stats library
+[4]    ⎕SE.Link.Import '#.stats' '/home/sally/stats' ⍝ Load the stats library
 [5]    ST←#.stats                                                                      
-[6]    →run↓0                                                                          
-[7]                                                                                    
-[8]    Run                                                                             
-[9]    ⎕OFF                                                                            
+[6]
+[7]    :If run                                                                         
+[8]        Main                                                                        
+[9]        ⎕OFF                                                                        
+[10]   :EndIf                                                                          
      ∇                                                                                 
 ```
 
@@ -95,9 +96,12 @@ This allows us to create a second configuration file, `linkdemo/run.dcfg`, which
 }
 ```
 
+### Distribution Workspace
 
+As we have seen, Link allows you to run your application based entirely on textual source files. However, if you have a lot of source files it may be more convenient for the users of your application to receive a single workspace file with all of the source loaded. 
 
+To prepare a workspace for shipment, we will need to:
 
-
-
-
+* Set `⎕LX` in the so that it calls the `Start` function
+* Use [Link.Break](Link.Break.md) to remove links to the source files. If you omit this step, you can create a [potentially confusing situation](Workspaces.md#Saving-a-Workspace-with-Links).
+* `)SAVE` the workspace

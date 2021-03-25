@@ -1,19 +1,17 @@
 # Link.Refresh 
 
     ]LINK.Refresh <ns> [-source={ns|dir|auto}]
-
+    
     msg ← {opts} ⎕SE.Link.Refresh ns
 
-Refresh is a one-way operation: it will read one side of the link and update the other side of the link accordingly. 
+Refresh will break and re-create a link by using one one side of the link as source, and bringing the other side into line.
 
-It means that changes on the other side of the link may be lost: if there are un-synchronised changes on both sides of the link, then Refresh will destroy one set of changes (the non-source side will be overwritten by the source side).
+**BEWARE:** Refresh has the potential to lose changes: if there are un-synchronised changes on both sides of the link, then Refresh will destroy one set of changes (the non-source side will be overwritten by the source side). [Link.Resync](Link.Resync.md) is available in Link 3.0, and allows you to review the differences before selecting how they should be resolved, and is now recommended in place of Refresh in most scenarios.
 
-It is useful when not watching the directory, to force updating the namespace from files by using `source=dir`.
+Refresh is useful when you have decided not to watch one side of a link, but now want to pick up any changes that have occurred:
 
-It is also useful if you have made changes to linked namespaces which are not tracked (such as using `⎕FIX`, `⎕FX`, `⎕NS`, `⎕CY` or assignment), you can use this function with `source=ns` to re-synchronise the directory.\
-In the latter case, it is preferable to modify workspace items with [Fix](Link.Fix), so that the Refresh is not necessary.
-
-
+* To bring the workspace into line with the source directories, use `source=dir`.
+* If you have made changes to linked namespaces using other mechanisms than the editor (such as using `⎕FIX`, `⎕FX`, `⎕NS`, `⎕CY` or assignment), you can Refresh with `source=ns` to update the directory.
 
 
 #### Arguments

@@ -1,6 +1,8 @@
 # Link Release Notes
 
- ## Version 2.1
+This document provides a list of differences between recent versions of Link. For a discussion 
+
+ ## Version 3.0
   - When specifying a directory, a trailing slash is reserved for future extension
   - Public functions now throw errors rather than return an error message when they fail.
   - [Link.Pause](Link.Pause.md) has been added
@@ -15,12 +17,17 @@
   - `beforeWrite` and `beforeRead` arguments have been refactored into a more consistent set.
   - [Link.Fix](Link.Fix.md) now correctly expects text source for arrays (as produced by ⎕SE.Dyalog.Array.Serialise), as documented, whereas Link 2.0 expected the array itself. Similarly, the source (rather than the array itself) is correctly reported by the `beforeWrite` callback.
   - Dyalog APL v18.1 or newer is required for the fixes to the following issues :\
-  -- [#155: :Require keyword does not work](https://github.com/Dyalog/link/issues/155)\
-  -- [#149: Link induce status messages](https://github.com/Dyalog/link/issues/149)\
-  -- [#148: Fixing linked function removes all monitor/trace points in it](https://github.com/Dyalog/link/issues/148)\
-  -- [#144: Link can produce unloadable files](https://github.com/Dyalog/link/issues/144)
+      -- [#155: :Require keyword does not work](https://github.com/Dyalog/link/issues/155)\
+    -- [#149: Link induce status messages](https://github.com/Dyalog/link/issues/149)\
+    -- [#148: Fixing linked function removes all monitor/trace points in it](https://github.com/Dyalog/link/issues/148)\
+    -- [#144: Link can produce unloadable files](https://github.com/Dyalog/link/issues/144)
+
+ ## Version 2.1
+
+Version 3.0 was labelled version 2.1 during most of its development, until the end of March 2021. It was renumbered just before the beginning of the distribution of official Beta releases of Dyalog Version 18.1. In other words: if you have version 2.1 installed, you have an early version of what became 3.0 and you should upgrade at your earliest convenience.
 
  ## Version 2.0
+
   - [Link.Break](Link.Break.md) has an `all` flag to break all links
   - [Link.Version](Link.Version.md) reports the current version number  
   - Initial public release
