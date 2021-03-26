@@ -1,12 +1,12 @@
 # Introduction
 
-This is an introduction to Link for users of Dyalog APL installations that include Link 3.0 (version 18.1 or later). If you have an earlier version of APL or Link, you may want to check out one or more of the following pages before continuing: 
+This is an introduction to Link for users of Dyalog APL installations that include Link 3.0 (version 18.0 or later). If you have an earlier version of APL or Link, you may want to check out one or more of the following pages before continuing: 
 
 * [Migrating to Link 3.0 from from Link 2.0](Upgradeto30.md)
 * [Migrating to Link 3.0 from SALT](GettingStarted/SALTtoLink.md)
-* [Installation instructions](GettingStarted/Installation.md) If you want to pick Link up directly from the GitHub repository rather than use the version installed with APL.
+* [Installation instructions:](GettingStarted/Installation.md) If you want to pick Link up directly from the GitHub repository rather than use the version installed with APL.
 * [How does Link work?](Discussion/HowDoesItWork.md) If you are one of those people who cannot comfortably use a tool until they understand the technical details of how it works, start here.
-* [The historical perspective](Discussion/History.md): Link is a step on a journey which begins more than a decade ago with the introduction of SALT for managing source code in text files, as an alternative to binary workspaces and files, and will hopefully end with the interpreter handling everything itself.
+* [The historical perspective:](Discussion/History.md) Link is a step on a journey which begins more than a decade ago with the introduction of SALT for managing source code in text files, as an alternative to binary workspaces and files, and will hopefully end with the interpreter handling everything itself.
 
 ## What is Link?
 
@@ -71,4 +71,3 @@ If you have an existing APL application that you want to move to Link, you may w
 * [How does Link work?](Discussion/HowDoesItWork.md)
 * [What happens if I save a workspace after creating Links?](Discussion/Workspaces.md)
 * [Are workspaces dead now?](Discussion/Workspaces.md)
-

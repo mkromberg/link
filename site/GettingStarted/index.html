@@ -245,6 +245,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#starting-with-a-workspace" class="md-nav__link">
+    Starting with a Workspace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#starting-a-new-project" class="md-nav__link">
     Starting a New project
   </a>
@@ -739,6 +746,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#starting-with-a-workspace" class="md-nav__link">
+    Starting with a Workspace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#starting-a-new-project" class="md-nav__link">
     Starting a New project
   </a>
@@ -788,18 +802,20 @@
                 
                 <h1 id="getting-started">Getting Started</h1>
 <h3 id="linking-to-an-existing-directory">Linking to an Existing Directory</h3>
-<p>In daily use, the assumption is that your source already exists in one or more file system folders that you are managing using an SCM like Git, or taking copies of at suitable intervals using some other mechanism. You will use <a href="/API/Link.Create.md">Link.Create</a> to load the source code into the workspace so that you can work with it. For example, the following user command load all the code in the folder <code>/home/sally/myapp</code> into a namespace called <code>myapp</code> , creating the namespace if it does not exist: </p>
+<p>In daily use, the assumption is that your source already exists in one or more file system folders that you are managing using an SCM like Git, or taking copies of at suitable intervals using some other mechanism. <a href="/API/Link.Create.md">Link.Create</a> loads the source code into the workspace so that you can work with it, keeping the content of the workspace synchronised with the source files, no matter which side of the link you make changes.</p>
+<p>For example, the following user command load all the code in the folder <code>/home/sally/myapp</code> into a namespace called <code>myapp</code> , creating the namespace if it does not exist: </p>
 <pre><code class="language-apl">      ]link.Create myapp /home/sally/myapp
 </code></pre>
 <p>The first argument to the user command, and to the corresponding API function <code>⎕SE.Link.Create</code> is the name of a namespace (in the case of the function you could also use a reference to an existing namespace). The second argument is a directory name.</p>
-<p>Of course, you might not already have a source directory, so let's look at how you might create one.</p>
+<h3 id="starting-with-a-workspace">Starting with a Workspace</h3>
+<p>If your existing code is in a workspace rather than in source files, you may want to skip forward and read the section on <a href="WStoLink/">converting a workspace to source files</a> before continuing.</p>
 <h3 id="starting-a-new-project">Starting a New project</h3>
-<p>If you are starting a brand new project, you can use the same command as above, but you will need to create either the namespace or the folder (or both) first. For the command to succeed, at least one of them needs to exist and exactly one of them needs to contain some code.</p>
+<p>Of course, you might be one of those lucky people who is starting a completely new project. In this casem you can still use <code>Link.Create</code>, but you will need to create either the namespace or the folder (or both) first. For the command to succeed, at least one of them needs to exist and exactly one of them needs to contain some code.</p>
 <ul>
 <li>If neither of them exist, Link.Create will reject the request on suspicion that there is a typo, in order to avoid silently creating an empty directory by mistake.</li>
 <li>If both of them exist AND contain code, and the code is not identical on both sides, Link.Create will fail and you will need to specify the  <code>source</code> option, whether the namespace or the directory should be considered to be the source. Incorrectly specifying the source will potentially overwrite existing content on the other side, so use this with extreme caution!</li>
 </ul>
-<p>To illustrate, we will create a namespace and populate it with two dfns and one tradfn, in order to have something to work with. In this example, the functions are created under program control; under normal use the functions would probably be created using the editor:</p>
+<p>To illustrate, we will create a namespace and populate it with two dfns and one tradfn, in order to have something to work with. In this example, the functions are created using APL expressions; under normal use the functions would probably be created using the editor, or perhaps loaded or copied from an existing workspace.</p>
 <pre><code class="language-apl">      'stats' ⎕NS ⍬ ⍝ Create an empty namespace
       stats.⎕FX 'mean←Mean vals;sum' 'sum←+⌿,vals' 'mean←sum÷1⌈⍴,vals'
       stats.Root←{⍺←2 ⋄ ⍵*÷⍺}

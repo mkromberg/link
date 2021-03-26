@@ -785,27 +785,26 @@
                 
                 
                 <h1 id="introduction">Introduction</h1>
-<p>This is a introduction to Link for users of Dyalog APL installations that include Link 3.0 (version 18.1 or later). If you have an earlier version of APL or Link, you may want to check out one or more of the following pages before continuing: </p>
+<p>This is an introduction to Link for users of Dyalog APL installations that include Link 3.0 (version 18.1 or later). If you have an earlier version of APL or Link, you may want to check out one or more of the following pages before continuing: </p>
 <ul>
 <li><a href="Upgradeto30/">Migrating to Link 3.0 from from Link 2.0</a></li>
 <li><a href="GettingStarted/SALTtoLink/">Migrating to Link 3.0 from SALT</a></li>
-<li><a href="GettingStarted/Installation/">Installation instructions</a> If you are using a version of Dyalog APL earlier than 18.1, or you want to pick Link up directly from the GitHub repository rather than use the version installed with APL.</li>
+<li><a href="GettingStarted/Installation/">Installation instructions:</a> If you want to pick Link up directly from the GitHub repository rather than use the version installed with APL.</li>
 <li><a href="Discussion/HowDoesItWork/">How does Link work?</a> If you are one of those people who cannot comfortably use a tool until they understand the technical details of how it works, start here.</li>
-<li><a href="Discussion/History/">The historical perspective</a>: Link is a step on a journey which begins more than a decade ago with the introduction of SALT for managing source code in text files, as an alternative to binary workspaces and files, and will hopefully end with the interpreter handling everything itself.</li>
+<li><a href="Discussion/History/">The historical perspective:</a> Link is a step on a journey which begins more than a decade ago with the introduction of SALT for managing source code in text files, as an alternative to binary workspaces and files, and will hopefully end with the interpreter handling everything itself.</li>
 </ul>
 <h2 id="what-is-link">What is Link?</h2>
-<p><strong><em>Link</em></strong> makes Unicode text files the recommended way to store APL source code, rather than the traditional binary workspace. The benefits of using Link and text files include:</p>
+<p><strong><em>Link</em></strong> supports Unicode text files as the recommended way to store APL source code, rather than the traditional binary workspace. The benefits of using Link and text files include:</p>
 <ul>
 <li>It is easy to use source code management tools like Git or Subversion to manage your code.</li>
 </ul>
-<p><em>Note that an SCM is not a requirement for using Link</em>; without an SCM you just need your own strategy for taking suitable copies of your source files, as with workspace files.</p>
+<p><em>Note that an SCM is not a requirement for using Link</em>; without an SCM you just need your own strategy for taking suitable copies of your source files, as your would with workspaces.</p>
 <ul>
 <li>
-<p>Changes to your code are <strong>immediately</strong> written to file: there is no need to remember to save your work.
-  You normally make the record permanent with a <em>commit</em> to your source code management system.</p>
+<p>Changes to your code are <strong>immediately</strong> written to file: there is no need to remember to save your work. You normally make the record permanent with a <em>commit</em> to your source code management system.</p>
 </li>
 <li>
-<p>Unlike binary workspaces, text source can be shared between different versions of APL - or even with human readers or writers don't have Dyalog APL installed at all.</p>
+<p>Unlike binary workspaces, text source can be shared between different versions of APL - or even with human readers or writers don't have APL installed at all.</p>
 </li>
 <li>
 <p>Source code stored in external files is preserved exactly as typed, rather than being reconstructed from the tokenised form.</p>
@@ -815,7 +814,7 @@
 <h2 id="link-is-not">Link is NOT...</h2>
 <ul>
 <li><strong>A source code management system</strong>: we recommend using Git to manage the text files that Link will help you create and edit using Dyalog APL.</li>
-<li><strong>A database management system:</strong> although Link is able to store APL arrays using a pre-release of the <em>literal array notation</em>, this is only intended to be used for constants which you consider to be part of the source code of your applications. Although all functions and operators that you define will be written to source files by default, arrays are only written to source files upon request see <a href="API/Link.Add/">Link.Add</a> and optional parameters of <a href="API/Link.Export/">Link.Export</a>. Application data belongs in a real DBMS or in files managed by the application.</li>
+<li><strong>A database management system:</strong> although Link is able to store APL arrays using a pre-release of the <em>literal array notation</em>, this is only intended to be used for constants which you consider to be part of the source code of your applications. Although all functions and operators that you define will be written to source files by default, arrays are only written to source files upon request using <a href="API/Link.Add/">Link.Add</a> or by specifying optional parameters to <a href="API/Link.Export/">Link.Export</a>. Application data should be stored in a database management system or files managed by the application.</li>
 </ul>
 <h2 id="link-fundamentals">Link Fundamentals</h2>
 <p>Link establishes <strong><em>links</em></strong> between one or more <strong>namespaces</strong> in the active APL workspace and corresponding <strong>directories</strong> containing APL source code in Unicode test files. For example, the following user command invocation will link a namespace called <code>myapp</code> to the folder <code>/home/sally/myapp</code>:</p>
@@ -828,7 +827,7 @@ Any changes made to code in the active workspace using the tracer and editor are
 <li><strong>Keep the Workspace up-to-date:</strong>
 Any changes made to the external files using a text editor, or resulting from an SCM action such as rolling back or switching to different branch, will immediately be reflected in the active workspace.</li>
 </ul>
-<p>You can use <code>]Link.Create</code>several times to create multiple links, and you can also use <code>]Link.Import</code>or <code>]Link.Export</code> to import source code into the workspace or export code to external files <em>without</em> creating links that will respond to subsequent changes. It is also possible to set links up that only react to changes at one end of the link.</p>
+<p>You can invoke <code>]Link.Create</code>several times to create multiple links, and you can also use <code>]Link.Import</code>or <code>]Link.Export</code> to import source code into the workspace or export code to external files <em>without</em> creating links that will respond to subsequent changes. It is also possible to set links up that only react to changes at one end of the link.</p>
 <h2 id="link-functions-vs-user-commands">Link Functions vs. User Commands</h2>
 <p>For every user command like <code>]Link.Create</code>, there is a corresponding function with a name like <code>⎕SE.Link.Create</code>.  The user commands are intended for experimentation or simple applications which do consist of a single directory and are only used interactively.</p>
 <p>If there are several steps involved in creating your application runtime environment, or you need to deploy your application in such a way that it starts up automatically, you will be better off using the functions and calling them from a function or script that you use to perform initialisation.</p>
