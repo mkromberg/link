@@ -1,4 +1,4 @@
-### Link - The Historical Perspective
+# History
 
 Link 3.0, released in 2021, is the one step in a long evolution , developed in 2019
 
@@ -41,22 +41,23 @@ After SALT had grown organically for more than a decade, it was time for a new s
 
 Link 3.0 is the first major revision of Link, following real use by a small number of clients. It adds:
 
-* A [Crawler](Crawler.md), which will detect and help eliminate differences between the contents of linked namespaces and the corresponding directories and can replace the File System Watcher in environments where it is not available.
 * Support for saving workspaces containing linked code and resuming work after a break.  
 * Support for names which differ only in case (for example, `FOO` vs `Foo`) in case-insensitive file systems, by adding "case coding" information to the file name.
 * A new `Link.LaunchDir` API function, that makes it straightforward to replace the old SALT `.dyapp` files with new features in the interpreter, that make it possible to launch the interpreter using a configuration file or single APL source file.
 
-A more complete description of the differences between Link 2.0 and 3.0 are described in the guide on [upgrading from 2.0 to 3.0](Upgradeto30.md).
+A more complete description of the differences between Link 2.0 and 3.0 are described in the guide on [upgrading from 2.0 to 3.0](/Upgradeto30.md).
 
 ### The Future
 
 The Link road map currently includes the following goals
 
+* Adding the [Crawler](/Crawler.md), which will automatically run [Link.Resync](/API/Link.Resync.md) in the background, in order to detect and help eliminate differences between the contents of linked namespaces and the corresponding directories and can replace the File System Watcher in environments where it is not available.
 * Eliminating the use of SALT, with a new implementation of user commands and other mechanisms for loading source code into the interpreter, based on Link rather than SALT.
 * Support for linking individual source files. Link 3.0 is only able to link a namespace to a directory. There are situations where it is practical to create a link to a single source file, particularly in the case of a namespace.
+* Improving integration with the APL Interpreter so that the editor will honour a Pause.
 
-Over time, it is a strategic goal for Dyalog to move more of the work done by Link into the APL interpreter, such as
+Over time, it is a strategic goal for Dyalog to move more of the work done by Link into the APL interpreter, such as:
 
 * Serialisation and Deserialisation of arrays, using the literal array notation
-* File System Watching or other mechanisms for detecting changes to source at both ends of a link.
+* File System Watching or other mechanisms for detecting changes to source at both ends of a link
 

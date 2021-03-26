@@ -1,8 +1,8 @@
-# Getting started with `Link`
+# Getting Started
 
 ### Linking to an Existing Directory
 
-In daily use, the assumption is that your source already exists in one or more file system folders that you are managing using an SCM like Git, or taking copies of at suitable intervals using some other mechanism. You will use [Link.Create](Link.Create.md) to load the source code into the workspace so that you can work with it. For example, the following user command load all the code in the folder `/home/sally/myapp` into a namespace called `myapp` , creating the namespace if it does not exist: 
+In daily use, the assumption is that your source already exists in one or more file system folders that you are managing using an SCM like Git, or taking copies of at suitable intervals using some other mechanism. You will use [Link.Create](/API/Link.Create.md) to load the source code into the workspace so that you can work with it. For example, the following user command load all the code in the folder `/home/sally/myapp` into a namespace called `myapp` , creating the namespace if it does not exist: 
 
 ```      apl
       ]link.Create myapp /home/sally/myapp
@@ -27,7 +27,7 @@ To illustrate, we will create a namespace and populate it with two dfns and one 
       stats.Root←{⍺←2 ⋄ ⍵*÷⍺}
       stats.StdDev←{2 Root(+.×⍨÷⍴),⍵-Mean ⍵}
 ```
-We could now create a source directory using [Link.Export](Link.Export.md), and then use [Link.Create](Link.Create.md) to create a link to it. However, [Link.Create](Link.Create.md) can do this in one step: assuming that the directory `/tmp/stats` is empty or does not exist, the following command will detect that there is code in the workspace but not in the directory, and create a link based on the namespace that we just created:
+We could now create a source directory using [Link.Export](/API/Link.Export.md), and then use [Link.Create](/API/Link.Create.md) to create a link to it. However, [Link.Create](/API/Link.Create.md) can do this in one step: assuming that the directory `/tmp/stats` is empty or does not exist, the following command will detect that there is code in the workspace but not in the directory, and create a link based on the namespace that we just created:
 
 ```apl
       ]LINK.Create stats /tmp/stats -source=ns
@@ -51,7 +51,7 @@ Linked: stats ←→ C:\tmp\stats
  Mean  Root  StdDev
 ```
 
-If you have an existing workspace containing several namespaces, code in the root of the workspace, or variables, you will want to read about [converting your workspace to text source](ExportingSource.md).
+If you have an existing workspace containing several namespaces, code in the root of the workspace, or variables, you will want to read about [converting your workspace to text source](WStoLink.md).
 
 ### Working with the Code
 
@@ -59,7 +59,7 @@ Once the link is set up, you can work with your code using the Dyalog IDE exactl
 
 NB: In the context of this document, the term *Dyalog IDE* includes both the Windows IDE and the Remote IDE (RIDE), which is tightly integrated with the interpreter.
 
-Conversely, if you are new to Dyalog APL, and have a favourite editor, you can use it to edit the source files directly, and any change that you make will be replicated in the active workspace. If you do not have a File System Watcher available on your platform, it may be a few seconds before the [Crawler](Crawler.md) kicks in and detects external changes.
+Conversely, if you are new to Dyalog APL, and have a favourite editor, you can use it to edit the source files directly, and any change that you make will be replicated in the active workspace. If you do not have a File System Watcher available on your platform, it may be a few seconds before the [Crawler](/Crawler.md) kicks in and detects external changes.
 
 If you use editors inside or outside the APL system to add new functions, operators, namespaces or classes,  the corresponding change will be made on the other side of the link. For example, we could add a `Median` function:
 
@@ -92,17 +92,15 @@ When changes are made using the editor which is built-in to Dyalog IDE (which in
 * Definitions moved between workspaces or namespaces using `⎕CY`, `⎕NS` or `)COPY`.
 * Definitions erased using `⎕EX`or `)ERASE`
 
-By default, a configurable [Crawler](Crawler.md) will wake up ever few seconds and scan your workspace and the source directory for any changes that were not detected.
+If you write tools which modify source code under program control, it is a good idea to call the API functions [Link.Fix](/API/Link.Fix.md) or [Link.Expunge](/API/Link.Expunge.md) to inform Link that you have made the change.
 
-If you write tools which modify source code under program control, it is a good idea to call the API functions [Link.Fix](Link.Fix.md) or [Link.Expunge](Link.Expunge.md) to inform Link that you have made the change, without relying on the crawler being active. The crawler is configurable and may have been disabled by the user.
-
-If you update the source files under program control and inbound synchronisation is not enabled, you can use [Link.Notify](Link.Notify.md) to let Link know about an external change that you would like to bring into the workspace.
+If you update the source files under program control and inbound synchronisation is not enabled, you can use [Link.Notify](/API/Link.Notify.md) to let Link know about an external change that you would like to bring into the workspace.
 
 ### Arrays
 
 By default, Link does not consider arrays to be part of the source code of an application and will not write arrays to source files unless you explicitly request it. Link is not intended to be used as a database management system; if you have arrays that are modified during the normal running of your application, we recommend that you store that data in an RDBMS or other files that are managed by the application code, rather than using Link for this.
 
-If you have arrays that represent error tables, range definitions or other *constant* definitions that it makes sense to conside to be part of the source code, you can add them using [Link.Add](Link.Add.md):
+If you have arrays that represent error tables, range definitions or other *constant* definitions that it makes sense to conside to be part of the source code, you can add them using [Link.Add](/API/Link.Add.md):
 
 ```apl
       stats.Directions←'North' 'South' 'East' 'West'
@@ -119,4 +117,3 @@ Although changes to the array in the workspace are not automatically written to 
 We have seen how to use `]Link.Create`to load textual source into the workspace in order to work with it. As your project grows, you will probably want to split your code into modules, for example application code in one directory and shared utilities in another - and maybe also run some code to get things set up.
 
 Next, we will look at [Setting up Development and Runtime Environments](Setup.md), so that you don't have to type the same sequence of things over and over again to get started with development - or running the application.
-

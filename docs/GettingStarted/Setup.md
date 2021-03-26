@@ -1,8 +1,8 @@
 ### Setting up your Environment
 
-With a small project, you can get by using `]Link.Create` and/or `Link.Import` to bring your source into the workspace in order to work with it. However, even in a small project, this quickly gets tedious, and as the project grows, you may want to load code from more that one directory, and perhaps run some code in order to set things up or even start the application. Fortunately, the [Link API](API.md) provides all the functions that you need to automate the setup.
+With a small project, you can get by using `]Link.Create` and/or `Link.Import` to bring your source into the workspace in order to work with it. However, even in a small project, this quickly gets tedious, and as the project grows, you may want to load code from more that one directory, and perhaps run some code in order to set things up or even start the application. Fortunately, the [Link API](/API/index.md) provides all the functions that you need to automate the setup.
 
-To illustrate, we will create a small application that uses the stats library that we created in the [introduction](GettingStarted.md). We'll put the application into a namespace called `linkdemo`:
+To illustrate, we will create a small application that uses the stats library that we created in the [introduction](index.md). We'll put the application into a namespace called `linkdemo`:
 
 ```      apl
       )clear
@@ -103,5 +103,5 @@ As we have seen, Link allows you to run your application based entirely on textu
 To prepare a workspace for shipment, we will need to:
 
 * Set `⎕LX` in the so that it calls the `Start` function
-* Use [Link.Break](Link.Break.md) to remove links to the source files. If you omit this step, you can create a [potentially confusing situation](Workspaces.md#Saving-a-Workspace-with-Links).
+* Use [Link.Break](/API/Link.Break.md) to remove links to the source files. If you omit this step, you can create a [potentially confusing situation](/Workspaces.md#Saving-a-Workspace-with-Links).
 * `)SAVE` the workspace

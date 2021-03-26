@@ -8,17 +8,17 @@ In principle, it should be possible to write the entire contents of any workspac
 
 #### -arrays
 
-By default, Link assumes that the "source code", only includes functions, operators, namespaces and classes. Variables are assumed to contain data which can either be erased or stored in some kind of database, rather than being part of the source. The `-arrays` causes all arrays in the workspace to be writte to source files as well (see the documentation for [Link.Create](Link.Create.md) for more options).
+By default, Link assumes that the "source code", only includes functions, operators, namespaces and classes. Variables are assumed to contain data which can either be erased or stored in some kind of database, rather than being part of the source. The `-arrays` causes all arrays in the workspace to be writte to source files as well (see the documentation for [Link.Create](/API/Link.Create.md) for more options).
 
 #### -sysVars
 
 By default, Link will assume that you do **not** wish to record the settings for system variables, because your source will be loaded into an environment that already has the desired settings. If you want to be 100% sure to re-create your workspace exactly as it is, you can use `-sysVars` to record the values of system variables from each namespace in source files.
 
-Beware that this might add a *lot* of mostly redundant files to your repository. It is probably a better idea to analyse your workspace carefully and only write system variables to file if you really need them, using the [Link.Add](Link.Add.md).
+Beware that this might add a *lot* of mostly redundant files to your repository. It is probably a better idea to analyse your workspace carefully and only write system variables to file if you really need them, using the [Link.Add](/API/Link.Add.md).
 
 #### Workspace containing Namespaces
 
-If your workspace is logically divided up into namespaces and you are happy for them all to end up in the same directory, you can use a single call to [Link.Create](Link.Create.md) like the one at the beginning of this section to write everything out at once. If you don't want the workspace to end up as a single directory tree, you can either restructure things afterwards using file explorers or command line tools, or you can make several calls to [Link.Create](Link.Create.md) to write the contents to different locations.
+If your workspace is logically divided up into namespaces and you are happy for them all to end up in the same directory, you can use a single call to [Link.Create](/API/Link.Create.md) like the one at the beginning of this section to write everything out at once. If you don't want the workspace to end up as a single directory tree, you can either restructure things afterwards using file explorers or command line tools, or you can make several calls to [Link.Create](/API/Link.Create.md) to write the contents to different locations.
 
 If you create more than one source directory, you will need make more than one call to Link.Create or Link.Import in order to re-create the workspace in order to run your code.
 

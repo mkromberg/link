@@ -1,0 +1,45 @@
+site_name: Link 3.0
+nav:
+  - index.md
+    
+  - Getting Started:
+    - GettingStarted/index.md
+    - GettingStarted/Setup.md
+    - GettingStarted/WStoLink.md
+    - GettingStarted/SALTtoLink.md
+    - GettingStarted/Installation.md
+  
+  - Upgradeto30.md
+  - ReleaseNotes.md
+  
+  - Discussion:
+    - Discussion/TechDetails.md
+    - Discussion/Workspaces.md
+    - Discussion/HowDoesItWork.md
+    - Discussion/History.md
+    
+  - API:
+    - API/index.md
+    - API/Link.Add.md
+    - API/Link.Break.md
+    - API/Link.CaseCode.md
+    - API/Link.Create.md
+    - API/Link.Export.md
+    - API/Link.Expunge.md
+    - API/Link.Fix.md
+    - API/Link.GetFileName.md
+    - API/Link.GetItemName.md
+    - API/Link.Import.md
+    - API/Link.Notify.md
+    - API/Link.Pause.md
+    - API/Link.Refresh.md
+    - API/Link.Resync.md
+    - API/Link.Status.md
+    - API/Link.StripCaseCode.md
+    - API/Link.TypeExtension.md
+    - API/Link.Version.md
+    
+theme:
+  features:
+    - navigation.indexes
+  name: material
