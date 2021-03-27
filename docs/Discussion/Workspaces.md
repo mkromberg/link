@@ -14,6 +14,6 @@ With the exception of the scenarios mentioned above, Link is intended to make it
 
 ### Saving workspaces containing Links
 
-If you `)SAVE` a workspace which has active links in it, this creates a potentially confusing situation. Objects defined in the workspace will still contain the information that was created by `2 ⎕FIX`,  which means that after a re-load, editing may cause the editor itself to update the source files, even though Link has not been activated. If you reload the workspace on a different machine, the source files may not be available, leading to confusing error messages.
+If you do `)SAVE` a workspace which has active links in it, this creates a potentially confusing situation. Objects defined in the workspace will still contain the information that was created by `2 ⎕FIX`,  which means that after a re-load, editing may cause the editor itself to update the source files, even though Link has not been activated. If you reload the workspace on a different machine, the source files may not be available, leading to confusing error messages.
 
-It at all possible,  you should always either Pause or Break links before saving a workspace.
+You should always [Link.Break](/API/Link.Break) or [Link.Resync](/API/Link.Resync) after loading a workspace which was saved with links in it.

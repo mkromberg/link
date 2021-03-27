@@ -27,6 +27,10 @@ When you are watching both sides of a link, Link delegates the work of tracking 
 
 * If .NET is available, Link uses a File System Watcher to monitor linked directories and immediately react to file creation, modification or deletion.
 
+### The Source of Link
+
+Link consists of a set of API functions which are loaded into the namespace `⎕SE.Link` when APL starts, from **$DYALOG/StartupSession/Link**. The user command file **$DYALOG/SALT/SPICE/Link.dyalog** provides access to the interactive user command covers that exist for most of the API functions. The code is included with installations of Dyalog version 18.1 or later, if you want to use Link with version 18.0 or pick Link up from GitHub, see the [installation instructions](/GettingStarted/Installation.md).
+
 ### The Crawler
 
 In a future version of Link, hopefully available during 2021, an optional and configurable [Crawler](/Crawler.md) will run in the background occasionally compare linked namespaces and directories using the same logic as [Link.Resync](/API/Link.Resync.md), and deal with anything that might have been missed by the automatic mechanisms. This will be especially useful if:

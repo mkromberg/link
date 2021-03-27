@@ -6,7 +6,7 @@
 
 Refresh will break and re-create a link by using one one side of the link as source, and bringing the other side into line.
 
-**BEWARE:** Refresh has the potential to lose changes: if there are un-synchronised changes on both sides of the link, then Refresh will destroy one set of changes (the non-source side will be overwritten by the source side). [Link.Resync](Link.Resync.md) is available in Link 3.0, and allows you to review the differences before selecting how they should be resolved, and is now recommended in place of Refresh in most scenarios.
+**BEWARE:** Refresh has the potential to lose changes: if there are un-synchronised changes on both sides of the link, then Refresh will destroy one set of changes (the non-source side will be overwritten by the source side). [Link.Resync](Link.Resync.md) provides better control, allowing you to review the differences before selecting how they should be resolved, and is now recommended in place of Refresh in most scenarios.
 
 Refresh is useful when you have decided not to watch one side of a link, but now want to pick up any changes that have occurred:
 
@@ -21,12 +21,12 @@ Refresh is useful when you have decided not to watch one side of a link, but now
 #### Options
 
 - **source**	{ns|dir|**auto**}  
-  > Whether to consider the ns or dir as the authoritative source for the link.
+  > Whether to consider the ns or dir as the source for the link.
   > - `dir` means that items in the namespace will be overwritten by items in files.
   > - `ns` means that items in files will be overwritten by items in the namespace.
   > - `auto` re-uses the same source that was determined at [Create](Link.Create.md) time.
   >
-  > Defaults to `auto`.
+  > The default is to use the setting that was specified at creation (`auto`).
 
 #### Result
 

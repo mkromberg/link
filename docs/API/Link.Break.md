@@ -4,8 +4,7 @@
     
     msg ← {opts} ⎕SE.Link.Break ns
 
-Breaks an existing link: Does not affect the contents of the active workspace, but removes
-all traces of the link, preventing any further synchronisation from taking place.
+Breaks an existing link: Does not affect the contents of the active workspace except to remove all traces of the link, preventing any further synchronisation from taking place.
 
 #### Arguments
 
@@ -13,9 +12,9 @@ all traces of the link, preventing any further synchronisation from taking place
 
 #### Options
 
-- `all`: Break all existing links (arguments are then irrelevant)
-- `recursive` {on|off|**error**}: Break children namespaces too if some have their own links to their own directories
- 
+- `all`: Break all existing links (arguments are ignored)
+- `recursive` {on|off|**error**}: Break child namespaces too if they have separately defined links.
+
 
 #### Result
 

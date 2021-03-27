@@ -1,14 +1,14 @@
 # Link.Add
 
     ]LINK.Add <items>
-
+    
     msg ← ⎕SE.Link.Add items                                      
 
-This function allows you to add one or more existing APL items to the link, creating the appropriate representation in the linked directory. The file will be created/updated whether the linked namespace is watched or not.
+This function allows you to add one or more existing APL items to the link, creating the appropriate representation in the linked directory. A source file will be created/updated whether the linked namespace is watched or not.
 
-This is useful to add arrays to a linked directory, because arrays are ignored by default (unless using the `-arrays` modifier with [Link.Create](Link.Create.md) and [Link.Export](Link.Export.md)). Since array files are never ignored, the Add needs to be done only once, then subsequent load from directory will always get the linked arrays.
+This is useful to write a new or modified array to a source file: arrays are normally not written to file by Link.
 
-This is also useful to force updating a linked file from the current APL definition, for example if not watching the namespace, or if modified an array by running APL code.
+It is also useful when a change has been made to a linked item using any mechanism other than the APL editor, for example the definition of a new dfn using assignment, or the use of `)COPY` to bring new objects into the workspace.
 
 Note: You can create or update an item from source while adding it to the Link by calling [Link.Fix](Link.Fix.md)
 

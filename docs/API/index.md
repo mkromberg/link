@@ -1,20 +1,22 @@
-The Link API functions are normally found in ```⎕SE.Link```. All API functions take a character
+The Link API functions are all found in ```⎕SE.Link```. Typically, API functions take a character
 vector or a nested vector as a right argument. The left argument may either be a namespace containing option values, or an array of character vectors. Namespaces may be specified by reference. For more details on setting options, look below the following table:
 
 ### Basic API Function reference
 
 Function                                              | Right Argument(s)          | Left Argument(s)                                                                | Result 
 ------------------------------------------------------|----------------------------|---------------------------------------------------------------------------------|-------
- [Add](Link.Add.md)<sup>`]`</sup>                     | items                      | *&lt;none&gt;*                                                                  | message
+ [Add](Link.Add.md)<sup>`]`</sup>                     | items                      | *<none>*                                                          | message
  [Break](Link.Break.md)<sup>`]`</sup>                 | namespaces                 | options: `all` `exact`                                                          | message
  [Create](Link.Create.md)<sup>`]`</sup>               | namespace directory        | options: `source` `watch` [and [many more](Link.Create.md#common-options)]      | message
  [Export](Link.Export.md)<sup>`]`</sup>               | namespace directory        | options: `overwrite` `caseCode` `arrays` `sysVars`                              | message
- [Expunge](Link.Expunge.md)<sup>`]`</sup>             | items                      | *&lt;none&gt;*                                                                  | boolean array
+ [Expunge](Link.Expunge.md)<sup>`]`</sup>             | items                      | *<none>*                                                          | boolean array
  [Import](Link.Import.md)<sup>`]`</sup>               | namespace directory        | options: `overwrite` `flatten` `fastLoad`                                                 | message
- [Pause](Link.Pause.md)<sup>`]`</sup>                 | namespace                  | *&lt;none&gt;*                                                                  | message
+ [LaunchDir](Link.LaunchDir.md)             | none               | none                                                           | directory name 
+ [Pause](Link.Pause.md)<sup>`]`</sup>                 | *<none>*          | *<none>*                                                          | message
  [Refresh](Link.Refresh.md)<sup>`]`</sup>             | namespace                  | options: `source`                                                               | message
+ [Resync](Link.Resync.md)<sup>`]`</sup>             | *<none>*          | options: `confirm` `pause`                                                 | message
  [Status](Link.Status.md)<sup>`]`</sup>               | namespace                  | options: `extended`                                                             | message
- [Version](Link.Version.md)             | *&lt;none&gt;*             | *&lt;none&gt;*                                                                                | version number as string
+ [Version](Link.Version.md)             | *<none>*     | *<none>*                                                                        | version number as string
 
  <sup>`]`</sup> These functions have [user command covers](#user-commands).
 

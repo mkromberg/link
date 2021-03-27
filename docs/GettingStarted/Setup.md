@@ -1,4 +1,4 @@
-### Setting up your Environment
+# Setting up your Environment
 
 With a small project, you can get by using `]Link.Create` and/or `Link.Import` to bring your source into the workspace in order to work with it. However, even in a small project, this quickly gets tedious, and as the project grows, you may want to load code from more that one directory, and perhaps run some code in order to set things up or even start the application. Fortunately, the [Link API](/API/index.md) provides all the functions that you need to automate the setup.
 
