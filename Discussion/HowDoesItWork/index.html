@@ -218,7 +218,7 @@
   
     <li class="md-nav__item">
       <a href="../../GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -405,6 +405,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-source-of-link" class="md-nav__link">
+    The Source of Link
+  </a>
   
 </li>
       
@@ -609,6 +616,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../API/Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../API/Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -758,6 +777,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-source-of-link" class="md-nav__link">
+    The Source of Link
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-crawler" class="md-nav__link">
     The Crawler
   </a>
@@ -806,6 +832,8 @@
 <ul>
 <li>If .NET is available, Link uses a File System Watcher to monitor linked directories and immediately react to file creation, modification or deletion.</li>
 </ul>
+<h3 id="the-source-of-link">The Source of Link</h3>
+<p>Link consists of a set of API functions which are loaded into the namespace <code>⎕SE.Link</code> when APL starts, from <strong>$DYALOG/StartupSession/Link</strong>. The user command file <strong>$DYALOG/SALT/SPICE/Link.dyalog</strong> provides access to the interactive user command covers that exist for most of the API functions. The code is included with installations of Dyalog version 18.1 or later, if you want to use Link with version 18.0 or pick Link up from GitHub, see the <a href="/GettingStarted/Installation.md">installation instructions</a>.</p>
 <h3 id="the-crawler">The Crawler</h3>
 <p>In a future version of Link, hopefully available during 2021, an optional and configurable <a href="/Crawler.md">Crawler</a> will run in the background occasionally compare linked namespaces and directories using the same logic as <a href="/API/Link.Resync.md">Link.Resync</a>, and deal with anything that might have been missed by the automatic mechanisms. This will be especially useful if:</p>
 <ul>

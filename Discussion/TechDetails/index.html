@@ -218,7 +218,7 @@
   
     <li class="md-nav__item">
       <a href="../../GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -365,42 +365,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-    <nav class="md-nav" aria-label="Syntax">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#user-commands" class="md-nav__link">
-    User commands
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#utility-functions" class="md-nav__link">
-    Utility functions
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#current-limitations" class="md-nav__link">
-    Current Limitations
+  <a href="#other-limitations" class="md-nav__link">
+    Other Limitations
   </a>
   
 </li>
@@ -616,6 +582,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../API/Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../API/Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -745,42 +723,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-    <nav class="md-nav" aria-label="Syntax">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#user-commands" class="md-nav__link">
-    User commands
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#utility-functions" class="md-nav__link">
-    Utility functions
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#current-limitations" class="md-nav__link">
-    Current Limitations
+  <a href="#other-limitations" class="md-nav__link">
+    Other Limitations
   </a>
   
 </li>
@@ -799,50 +743,25 @@
                 
                 
                 <h1 id="technical-details-and-limitations">Technical Details and Limitations</h1>
-<p>Link supports the use of text files as application source, by mapping workspace content and filesystem content in a one-to-one relationship. Each unscripted namespace is represented as a directory. Defined functions, scripted namespaces, classes and interfaces and arrays are associated with a text file. Depending on which synchronisation options are available and have been selected, Link will synchronise changes in none, one or both directions.</p>
+<p>Link enables the use of text files as application source, by mapping workspace content to directories and files. There are some types of objects that cannot be supported, and a few other limitations that are worth discussing:</p>
 <h2 id="supported-objects">Supported Objects</h2>
-<p>In the following, for want of a better work, the term <em>object</em> will be used to refer to any kind of named entity that can exist in an APL workspace - not limited to classes or instances.</p>
-<p>Link handles objects of name class 2.1 (array), 3.1 (traditional function), 3.2 (d-function), 4.1 (traditional operator), 4.2 (d-operator), 9.1 (namespace), 9.4 (class) and 9.5 (interfaces).</p>
-<p>Unscripted namespaces (created with ⎕NS or )NS and not :Namespace or :Class or :Interface) are mapped to directories. Functions, operators and namespaces that have text source are mapped to text files.</p>
-<p>Variables are ignored by default, but they may be explicitly linked and saved to file with <a href="/API/Link.Add.md">Link.Add</a>, or with the <code>-arrays</code> modifier for <a href="/API/Link.Create.md">Link.Create</a> and <a href="/API/Link.Export.md">Link.Export</a>.</p>
+<p>In the following, for want of a better word, the term <em>object</em> will be used to refer to any kind of named entity that can exist in an APL workspace - not limited to classes or instances.</p>
+<p><strong>Supported:</strong> Link supports objects of name class 2.1 (array), 3.1 (traditional function), 3.2 (d-function), 4.1 (traditional operator), 4.2 (d-operator), 9.1 (namespace), 9.4 (class) and 9.5 (interface).</p>
+<p><strong>Unscripted Namespaces:</strong> Namespaces created with <code>⎕NS</code> or <code>)NS</code> have no source code of their own and are mapped to directories. In Link version 3.0, one endpoint of a link is always an unscripted namespace, and the other endpoint of the link is a directory.</p>
+<p><strong>Scripted Namespaces:</strong> So-called scripted namespaces, created using the editor or <code>⎕FIX</code>, have textual source and are treated the same way as functions and other "code objects". Link 3.0 does not support scripted namespaces, or any other objects that map to a single source file, as endpoints for a link.</p>
+<p>It is likely that this restriction will be lifted in a future version of Link.</p>
+<p><strong>Variables</strong> are ignored by default, because most of them are not part of the source code of an application. However, they may be explicitly saved to file with <a href="/API/Link.Add.md">Link.Add</a>, or with the <code>-arrays</code> modifier of <a href="/API/Link.Create.md">Link.Create</a> and <a href="/API/Link.Export.md">Link.Export</a>.</p>
+<p><strong>Functions and Operators:</strong> Link is not able to represent names which refer to primitive or derived functions or operators, or trains - because the APL interpreter does not have a source form for such items. You will need to define such objects in the source of another function, or a scripted namespace.</p>
+<p><strong>Unsupported:</strong> Link has no support for name classes 2.2 (field), 2.3 (property), 2.6 (external/shared variable), 3.3 (primitive or derived function or train), 4.3 (primitive or derived operator), 3.6 (external function) 9.2 (instance), 9.6 (external class) and 9.7 (external interface).</p>
+<h2 id="other-limitations">Other Limitations</h2>
 <ul>
-<li>The root namespace of a link must be an unscripted namespace (created with ⎕NS)</li>
-<li>Link does not support name classes 2.2 (field), 2.3 (property), 2.6 (external/shared variable), 3.3 (primitive or derived function or train), 4.3 (primitive or derived operator), 3.6 (external function) 9.2 (instance), 9.6 (external class) and 9.7 (external interface).</li>
-</ul>
-<p>By default, Link will update files with changes made in linked namespaces through the editor (<code>⎕ED</code>). It will also watch the file system for changes to the linked directory, modifying the linked namespace accordingly. Watching the file system is currently supported only on .Net and .NetCore, but support is planned for other operating systems in the near future.</p>
-<h2 id="syntax">Syntax</h2>
-<p>Link provides a set of utility functions in the namespace <code>⎕SE.Link</code> (see <a href="/API/index.md">the API reference</a> for a list). If SALT and user commands are enabled then an additional <code>LINK</code> group of user commands are available (and can be listed with <code>]?link</code>)</p>
-<p>For performance and ease of debugging, we recommend avoiding the invocation of user commands under program control. Use the utility functions located in <code>⎕SE.Link</code> directly instead.</p>
-<h3 id="user-commands">User commands</h3>
-<p>The corresponding user commands have the general syntax</p>
-<pre><code>]LINK.CmdName arg1 [arg2] [-name[=value] ...]
-</code></pre>
-<p>where <code>arg2</code>'s presence depends on the specific command, and <code>-name</code> is a flag enabling the specific option and <code>-name=value</code> sets the specific option to a specific value. The value of the two options requiring array values (<code>codeExtensions</code> and <code>typeExtensions</code>) are instead the <em>name</em> of a variable containing the needed array.</p>
-<h3 id="utility-functions">Utility functions</h3>
-<p>The general syntax of the utility functions is</p>
-<pre><code class="language-apl">options FnName arg
-</code></pre>
-<p>where <code>options</code> is a namespace with variables named according to the option they set, containing their corresponding values. The <code>-name=value</code> option can be set by <code>options.name←value</code>, and switches with values (e.g. <code>-name</code>) can be set by <code>options.name←1</code>.</p>
-<p>Unset options take their default value (just like omitted modifiers in the user command).</p>
-<p><code>arg</code> is detailed in each function help: see the <a href="/API/index.md">API index</a></p>
-<h2 id="usage">Usage</h2>
-<p>In most cases, it is unnecessary to use any custom options. Link will infer what to do in the first three of the following four cases:</p>
-<ol>
-<li>The namespace is empty or doesn't exist and the directory is empty or doesn't exist.</li>
-<li>The namespace is empty or doesn't exist but the directory has content</li>
-<li>The namespace has content but the directory is empty or doesn't exist</li>
-<li>The namespace has content and the directory has content</li>
-</ol>
-<p>In the first three cases (where no more than one side has content), Link will export/import any content to the other side, and set up tracking of future changes. In the last case, the <code>source</code> option must be specified as <code>ns</code>, <code>dir</code>, or <code>none</code> , and the selected side's content will overwrite the other side. <strong>Use this with caution!</strong></p>
-<h2 id="current-limitations">Current Limitations</h2>
-<ul>
-<li>Link only handles correctly named namespaces - that is, observing <code>{⍵≡(⎕NS⍬)⍎⍕⍵}</code>. Scripted namespaces must simply be named. When creating an unscripted namespace, we recommend using <code>⎕NS</code> dyadically to name the created namespace (for example <code>'myproject'⎕NS⍬</code> rather than <code>myproject←⎕NS⍬</code>). This allows retrieving namespace reference from its display from (for example <code>#.myproject</code> rather than <code>#.[namespace]</code>).</li>
-<li>Link does not support namespace-tagged functions and operators (e.g. foo←namespace.{function}).</li>
-<li>Changes made using <code>←</code>, <code>⎕NS</code>, <code>⎕FX</code>, <code>⎕FIX</code>, <code>⎕CY</code>, <code>)NS</code> and <code>)COPY</code> or the APL line <code>∇</code> editor are not currently detected. For link to be aware of the change, they must be replaced by a call to <a href="/API/Link.Fix.md">Link.Fix</a>. Similarly, deletions with <code>⎕EX</code> or <code>)ERASE</code> must be replaced by a call to <a href="/API/Link.Expunge.md">Link.Expunge</a>.</li>
-<li>Link does not support files that define multiple names, whereas 2∘⎕FIX supports it.</li>
-<li>The detection of external changes to files and directories is currently only supported under .Net and .NetCore. However, changes to a file will be reflected in the namespace if the file's item is opened in APL's editor, on all platforms.</li>
-<li>Source code must not have embedded newlines within a string, whereas ⎕FX tolerates it. Link will error if this is attempted. This restriction comes because newline characters would be interpreted as a new line when saved as text file. When newlines characters must be used in source code, they should be implemented by a call to <code>⎕UCS</code> e.g. <code>newline←⎕UCS 13 10  ⍝ carriage-return + line-feed</code></li>
-<li>Dyalog v18.1 is recommended if it is important that all source be preserved as typed. Earlier versions of APL have small glitches that occasionally lose the source as typed under certain circumstances. That includes handling :Require keywords, whitespaces in code, formatting of numeric constants, and more.</li>
+<li>Namespaces must be named. To be precise, it must be true that <code>ns≡(⎕NS⍬)⍎⍕ns</code>. Scripted namespaces must not be anonymous. When creating an unscripted namespace, we recommend using <code>⎕NS</code> dyadically to name the created namespace (for example <code>'myproject' ⎕NS ⍬</code> rather than <code>myproject←⎕NS ⍬</code>). This allows retrieving namespace reference from its display from (for example <code>#.myproject</code> rather than <code>#.[namespace]</code>).</li>
+<li>Link does not support namespace-tagged functions and operators (e.g. <code>foo←namespace.{function}</code>).</li>
+<li>Changes made using <code>←</code>, <code>⎕NS</code>, <code>⎕FX</code>, <code>⎕FIX</code>, <code>⎕CY</code>, <code>)NS</code> and <code>)COPY</code> or the APL line <code>∇</code> editor are not currently detected. For Link to be aware of the change, a call must be made to <a href="/API/Link.Fix.md">Link.Fix</a>. Similarly, deletions with <code>⎕EX</code> or <code>)ERASE</code> must be replaced by a call to <a href="/API/Link.Expunge.md">Link.Expunge</a>.</li>
+<li>Link does not support source files that define multiple names, even though 2∘⎕FIX does support this.</li>
+<li>The detection of external changes to files and directories is currently only supported under .Net and .Net Core. Note that the built-in APL editor <em>will</em> detect changes to source files on all platforms, but not before the editor is opened.</li>
+<li>Source code must not have embedded newlines within character constants, although ⎕FX does allow this. Link will error if this is attempted. This restriction comes because newline characters would be interpreted as a new line when saved as text file. When newline characters are needed in source code, they should be implemented by a call to <code>⎕UCS</code> e.g. <code>newline←⎕UCS 13 10  ⍝ carriage-return + line-feed</code></li>
+<li>Although Link 3.0 will work with version 18.0, Dyalog v18.1 is recommended if it is important that all source be preserved as typed. Earlier versions of APL have small glitches that occasionally lose the source as typed under certain circumstances.</li>
 </ul>
                 
               

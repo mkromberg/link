@@ -14,7 +14,7 @@
     
     
       
-        <title>Link.Export - Link 3.0</title>
+        <title>Link.LaunchDir - Link 3.0</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linkexport" class="md-skip">
+        <a href="#linklaunchdir" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Link.Export
+              Link.LaunchDir
             
           </span>
         </div>
@@ -463,63 +463,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Link.Export
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Link.Export/" class="md-nav__link">
         Link.Export
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#arguments" class="md-nav__link">
-    Arguments
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#result" class="md-nav__link">
-    Result
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -587,11 +535,56 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../Link.LaunchDir/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Link.LaunchDir
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Link.LaunchDir
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    Arguments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    Result
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -730,13 +723,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#result" class="md-nav__link">
     Result
   </a>
@@ -756,27 +742,19 @@
               
                 
                 
-                <h1 id="linkexport">Link.Export</h1>
-<pre><code>]LINK.Export &lt;ns&gt; &lt;dir&gt; [-overwrite] [-casecode] [-arrays{=name1,name2,...}] [-sysvars]
-
-msg ← {opts} ⎕SE.Link.Export (ns dir)
+                <h1 id="linklaunchdir">Link.LaunchDir</h1>
+<pre><code>dir ←  ⎕SE.Link.LaunchDir
 </code></pre>
-<p>This function takes the same arguments as <a href="../Link.Create/">Link.Create</a> but saves the contents of a namespace to directory without maintaining a Link.</p>
-<p>If the source is an unscripted namespace, then the destination is interpreted as a directory.</p>
-<p>If the source is anything else, then the destination is interpreter as a directory (and a correctly named file will be created there), <em>unless</em> it ends with a recognised extension, in which case it is interpreted as a file name.</p>
+<p>If APL was launched with a <code>LOAD</code> or <code>CONFIGFILE</code> parameter, <code>Link.LaunchDir</code> returns the fully qualified name of the directory in which the file used to start APL is located. If both were specified, the <code>LOAD</code>ed file takes priority.</p>
+<p>If neither parameter was specified, the current working directory is returned.</p>
+<p>This function is useful during the startup of applications loaded directly from source, and allows you to locate additional resources that are located relative to the source for the code used to start the application.</p>
 <h4 id="arguments">Arguments</h4>
 <ul>
-<li>source : unscripted namespace or APL name</li>
-<li>destination: directory or file name</li>
-</ul>
-<h4 id="options">Options</h4>
-<ul>
-<li><code>overwrite</code>: Allow overwriting existing files in the destination directory</li>
-<li>other options have same effect as in <a href="../Link.Create/">Link.Create</a></li>
+<li>None</li>
 </ul>
 <h4 id="result">Result</h4>
 <ul>
-<li>String describing the exported source and destination, along with possible failures</li>
+<li>A character vector containing a fully qualified directory name.</li>
 </ul>
                 
               
@@ -795,7 +773,7 @@ msg ← {opts} ⎕SE.Link.Export (ns dir)
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../Link.Create/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../Link.Import/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -804,19 +782,19 @@ msg ← {opts} ⎕SE.Link.Export (ns dir)
               <span class="md-footer__direction">
                 Previous
               </span>
-              Link.Create
+              Link.Import
             </div>
           </div>
         </a>
       
       
-        <a href="../Link.Expunge/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../Link.Notify/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Link.Expunge
+              Link.Notify
             </div>
           </div>
           <div class="md-footer__button md-icon">

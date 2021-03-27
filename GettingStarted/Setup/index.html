@@ -14,7 +14,7 @@
     
     
       
-        <title>Setup - Link 3.0</title>
+        <title>Setting up your Environment - Link 3.0</title>
       
     
     
@@ -88,7 +88,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Setup
+              Setting up your Environment
             
           </span>
         </div>
@@ -224,19 +224,23 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Setup
+          Setting up your Environment
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Setup
+        Setting up your Environment
       </a>
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -244,13 +248,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up-your-environment" class="md-nav__link">
-    Setting up your Environment
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#automating-startup" class="md-nav__link">
@@ -592,6 +589,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../API/Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../API/Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -704,19 +713,14 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up-your-environment" class="md-nav__link">
-    Setting up your Environment
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#automating-startup" class="md-nav__link">
@@ -752,9 +756,7 @@
               
                 
                 
-                  <h1>Setup</h1>
-                
-                <h3 id="setting-up-your-environment">Setting up your Environment</h3>
+                <h1 id="setting-up-your-environment">Setting up your Environment</h1>
 <p>With a small project, you can get by using <code>]Link.Create</code> and/or <code>Link.Import</code> to bring your source into the workspace in order to work with it. However, even in a small project, this quickly gets tedious, and as the project grows, you may want to load code from more that one directory, and perhaps run some code in order to set things up or even start the application. Fortunately, the <a href="/API/index.md">Link API</a> provides all the functions that you need to automate the setup.</p>
 <p>To illustrate, we will create a small application that uses the stats library that we created in the <a href="../">introduction</a>. We'll put the application into a namespace called <code>linkdemo</code>:</p>
 <pre><code class="language-apl">      )clear

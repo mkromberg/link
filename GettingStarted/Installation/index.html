@@ -220,7 +220,7 @@
   
     <li class="md-nav__item">
       <a href="../Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -263,38 +263,9 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Installation
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         Installation
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installing-from-github" class="md-nav__link">
-    Installing from GitHub
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -575,6 +546,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../API/Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../API/Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -690,21 +673,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installing-from-github" class="md-nav__link">
-    Installing from GitHub
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -717,15 +685,23 @@
                 
                 
                 <h1 id="installation">Installation</h1>
-<p>A fully supported version Link is included with Dyalog version 18.0 or later; no installation is required. </p>
-<h2 id="installing-from-github">Installing from GitHub</h2>
-<p>Link is maintained as an open source project at <a href="https://github.com/dyalog/link">https://github.com/dyalog/link</a>, which means that you have the option of using a different version from that which is distributed with APL, for example if you want to participate in testing pre-releases of Link.</p>
-<p>Once you have downloaded or cloned the source code to your local machine, you have two choices:</p>
+<p>The fully supported version of Link 3.0 is included with Dyalog version 18.1 or later; no installation is required. The instructions on this page only apply if you want to:</p>
 <ul>
-<li>Either copy the contents of the checked out link repository into the Dyalog installation directory in such a way that  <strong>startup.dyalog</strong> ends up in the same directory as <strong>dyalog.exe</strong>, confirming the overwriting of <strong>$DYALOG/SALT/spice/Link.dyalog</strong> and of <strong>$DYALOG/StartupSession/*</strong>.</li>
-<li>Or set the <code>DYALOGSTARTUPSE</code> environment variable to point to the StartupSession folder in the checkout.</li>
+<li>Use Link 3.0 in place of Link 2.0 with Dyalog version 18.0</li>
+<li>Participate in testing pre-releases of Link</li>
+<li>Have some other reason for wanting to use a different version than that which is distributed with APL.</li>
 </ul>
-<p>You will need to restart Dyalog APL.</p>
+<p>Link is maintained as an open source project at <a href="https://github.com/dyalog/link">https://github.com/dyalog/link</a>. Once you have downloaded or cloned a particular tag or release of the source code to a folder on your machine, you have two alternatives:</p>
+<ul>
+<li><strong>OVERWRITE the installed Link</strong> by replacing the contents of the <strong>$DYALOG/StartupSession</strong> in your installation with the contents of the StartupSession folder that you have downloaded.</li>
+<li><strong>Set the <code>DYALOGSTARTUPSE</code> environment variable</strong> to point to the StartupSession folder that you have downloaded. This route is recommended if you think you will regularly be updating your copy of Link; if you have done a <code>git clone</code> of the repository, then all you need to do is a <code>git pull</code> and restart APL.</li>
+</ul>
+<p>If you are using Dyalog APL version 18.0, you also need to update the user command file used to invoke Links user commands. This should only need to be done once, even if you subsequently download new versions of Link. Again, there are two options:</p>
+<ul>
+<li>Overwrite the installed file <strong>$DYALOG/SALT/spice/Link.dyalog</strong> with the corresponding file that you have downloaded.</li>
+<li>Place a copy of the downloaded file into your <code>MyUcmds</code> folder, which will cause it to take priority over the installed copy.</li>
+</ul>
+<p>You will need to restart Dyalog APL each time you update these files, in order to pick up the new definitions.</p>
                 
               
               

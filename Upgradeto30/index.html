@@ -218,7 +218,7 @@
   
     <li class="md-nav__item">
       <a href="../GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -587,6 +587,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../API/Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../API/Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -747,19 +759,19 @@
 <h3 id="breaking-changes">Breaking Changes</h3>
 <p>Some of the changes have the potential to break existing applications that use Link and require a review of existing code that calls the <a href="../API/">Link API</a>:</p>
 <ul>
-<li>When specifying the name of a directory, it may not have a trailing slash (this is reserved for possible future extensions)</li>
+<li>When specifying the name of a directory, Link 3.0 will not accept a trailing slash (this is reserved for possible future extensions)</li>
 <li>The <code>source=both</code> option has been removed from <a href="../API/Link.Create/">Link.Create</a>.</li>
-<li>Link.List has been renamed <a href="../API/Link.Status/">Link.Status</a></li>
-<li>When providing a new value for an array using <a href="../API/Link.Fix/">Link.Fix</a>, Link 3.0 expects the text source form of the array rather than the value of the array (as is the case for all other items). To update using the value, assign it to the array and call <a href="../API/Link.Add/">Link.Add</a>.</li>
-<li>If you have defined handlers for custom array representations, there have been significant changes to the arguments to the <code>beforeRead</code> and <code>beforeWrite</code>callback functions - and the addition of a new <code>getFilename</code> callback. These functions are described in the documentation for <a href="../API/Link.Create/">Link.Create</a>.</li>
+<li>Link.List has been renamed <a href="../API/Link.Status/">Link.Status</a>.</li>
+<li>When providing a new value for an array using <a href="../API/Link.Fix/">Link.Fix</a>, Link 3.0 expects the text source form of the array rather than the value of the array (bringing arrays into line with all other cases). To update using a new value, assign the value to the array and call <a href="../API/Link.Add/">Link.Add</a>.</li>
+<li>If you have defined handlers for custom array representations, there have been significant changes to the arguments to the <code>beforeRead</code> and <code>beforeWrite</code>callback functions. Also, a new <code>getFilename</code> callback has been added. These functions are described in the documentation for <a href="../API/Link.Create/">Link.Create</a>.</li>
+<li><strong>fastLoad:</strong> When loading very large bodies of code (thousands or tens of thousands of functions), you may need to specify the new <code>fastLoad</code> option on <a href="../API/Link.Create/">Link.Create</a>, in order to disable the checking of whether the names of items actually defined by source files correspond to the name of the file. Without this option, link creation may slow down so much that it could be considered a breaking change.</li>
 </ul>
 <h3 id="other-significant-changes">Other Significant Changes</h3>
 <p>The most important new features are:</p>
 <ul>
-<li>The addition of a <a href="../Crawler/">Crawler</a>, which will detect and help eliminate differences between the contents of linked namespaces and the corresponding directories.</li>
-<li>The addition of <a href="../API/Link.Pause/">Link.Pause</a> and corresponding enhancements to <a href="../API/Link.Refresh/">Link.Refresh</a> which provide better support for resuming work after a break, especially if the active workspace has been saved and reloaded during the break.  </li>
+<li>The addition of <a href="../API/Link.Pause/">Link.Pause</a> and <a href="../API/Link.Resync/">Link.Resync</a> which provide better support for resuming work after a break, especially if the active workspace has been saved and reloaded.</li>
 <li>"Case Coding" of file names, supporting the maintenence of source for names which differ only in case (for example, <code>FOO</code> vs <code>Foo</code>) in case-insensitive file systems.</li>
-<li>The addition of the <code>Link.LaunchDir</code> API function, which returns the name of the directory that the interpreter was started from, either using the <code>LOAD=</code> or <code>CONFIGFILE=</code>setting.</li>
+<li>The addition of the <a href="../API/Link.LaunchDir/">Link.LaunchDir</a> API function, which returns the name of the directory that the interpreter was started from, either using the <code>LOAD=</code> or <code>CONFIGFILE=</code>setting.</li>
 </ul>
 <h3 id="release-notes">Release Notes</h3>
 <p>A detailed list of new features added to recent releases and a few behavioural changes can be found in the <a href="../ReleaseNotes/">Link 3.0 Release Notes</a>. </p>
