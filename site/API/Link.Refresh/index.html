@@ -218,7 +218,7 @@
   
     <li class="md-nav__item">
       <a href="../../GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -537,6 +537,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -750,7 +762,7 @@
 msg ← {opts} ⎕SE.Link.Refresh ns
 </code></pre>
 <p>Refresh will break and re-create a link by using one one side of the link as source, and bringing the other side into line.</p>
-<p><strong>BEWARE:</strong> Refresh has the potential to lose changes: if there are un-synchronised changes on both sides of the link, then Refresh will destroy one set of changes (the non-source side will be overwritten by the source side). <a href="../Link.Resync/">Link.Resync</a> is available in Link 3.0, and allows you to review the differences before selecting how they should be resolved, and is now recommended in place of Refresh in most scenarios.</p>
+<p><strong>BEWARE:</strong> Refresh has the potential to lose changes: if there are un-synchronised changes on both sides of the link, then Refresh will destroy one set of changes (the non-source side will be overwritten by the source side). <a href="../Link.Resync/">Link.Resync</a> provides better control, allowing you to review the differences before selecting how they should be resolved, and is now recommended in place of Refresh in most scenarios.</p>
 <p>Refresh is useful when you have decided not to watch one side of a link, but now want to pick up any changes that have occurred:</p>
 <ul>
 <li>To bring the workspace into line with the source directories, use <code>source=dir</code>.</li>
@@ -763,11 +775,11 @@ msg ← {opts} ⎕SE.Link.Refresh ns
 <h4 id="options">Options</h4>
 <ul>
 <li><strong>source</strong>    {ns|dir|<strong>auto</strong>}  <blockquote>
-<p>Whether to consider the ns or dir as the authoritative source for the link.
+<p>Whether to consider the ns or dir as the source for the link.
 - <code>dir</code> means that items in the namespace will be overwritten by items in files.
 - <code>ns</code> means that items in files will be overwritten by items in the namespace.
 - <code>auto</code> re-uses the same source that was determined at <a href="../Link.Create/">Create</a> time.</p>
-<p>Defaults to <code>auto</code>.</p>
+<p>The default is to use the setting that was specified at creation (<code>auto</code>).</p>
 </blockquote>
 </li>
 </ul>

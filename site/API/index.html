@@ -218,7 +218,7 @@
   
     <li class="md-nav__item">
       <a href="../GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -592,6 +592,18 @@
   
   
     <li class="md-nav__item">
+      <a href="Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -754,7 +766,7 @@
                 
                   <h1>Index</h1>
                 
-                <p>The Link API functions are normally found in <code>⎕SE.Link</code>. All API functions take a character
+                <p>The Link API functions are all found in <code>⎕SE.Link</code>. Typically, API functions take a character
 vector or a nested vector as a right argument. The left argument may either be a namespace containing option values, or an array of character vectors. Namespaces may be specified by reference. For more details on setting options, look below the following table:</p>
 <h3 id="basic-api-function-reference">Basic API Function reference</h3>
 <table>
@@ -770,7 +782,7 @@ vector or a nested vector as a right argument. The left argument may either be a
 <tr>
 <td><a href="Link.Add/">Add</a><sup><code>]</code></sup></td>
 <td>items</td>
-<td><em>&lt;none&gt;</em></td>
+<td><em><none></em></td>
 <td>message</td>
 </tr>
 <tr>
@@ -794,7 +806,7 @@ vector or a nested vector as a right argument. The left argument may either be a
 <tr>
 <td><a href="Link.Expunge/">Expunge</a><sup><code>]</code></sup></td>
 <td>items</td>
-<td><em>&lt;none&gt;</em></td>
+<td><em><none></em></td>
 <td>boolean array</td>
 </tr>
 <tr>
@@ -804,15 +816,27 @@ vector or a nested vector as a right argument. The left argument may either be a
 <td>message</td>
 </tr>
 <tr>
+<td><a href="Link.LaunchDir/">LaunchDir</a></td>
+<td>none</td>
+<td>none</td>
+<td>directory name</td>
+</tr>
+<tr>
 <td><a href="Link.Pause/">Pause</a><sup><code>]</code></sup></td>
-<td>namespace</td>
-<td><em>&lt;none&gt;</em></td>
+<td><em><none></em></td>
+<td><em><none></em></td>
 <td>message</td>
 </tr>
 <tr>
 <td><a href="Link.Refresh/">Refresh</a><sup><code>]</code></sup></td>
 <td>namespace</td>
 <td>options: <code>source</code></td>
+<td>message</td>
+</tr>
+<tr>
+<td><a href="Link.Resync/">Resync</a><sup><code>]</code></sup></td>
+<td><em><none></em></td>
+<td>options: <code>confirm</code> <code>pause</code></td>
 <td>message</td>
 </tr>
 <tr>
@@ -823,8 +847,8 @@ vector or a nested vector as a right argument. The left argument may either be a
 </tr>
 <tr>
 <td><a href="Link.Version/">Version</a></td>
-<td><em>&lt;none&gt;</em></td>
-<td><em>&lt;none&gt;</em></td>
+<td><em><none></em></td>
+<td><em><none></em></td>
 <td>version number as string</td>
 </tr>
 </tbody>

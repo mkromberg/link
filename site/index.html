@@ -221,9 +221,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#link-functions-vs-user-commands" class="md-nav__link">
-    Link Functions vs. User Commands
+  <a href="#functions-vs-user-commands" class="md-nav__link">
+    Functions vs. User Commands
   </a>
+  
+    <nav class="md-nav" aria-label="Functions vs. User Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-commands" class="md-nav__link">
+    User commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-functions" class="md-nav__link">
+    API Functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -291,7 +311,7 @@
   
     <li class="md-nav__item">
       <a href="GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -608,6 +628,18 @@
   
   
     <li class="md-nav__item">
+      <a href="API/Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="API/Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -751,9 +783,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#link-functions-vs-user-commands" class="md-nav__link">
-    Link Functions vs. User Commands
+  <a href="#functions-vs-user-commands" class="md-nav__link">
+    Functions vs. User Commands
   </a>
+  
+    <nav class="md-nav" aria-label="Functions vs. User Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-commands" class="md-nav__link">
+    User commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-functions" class="md-nav__link">
+    API Functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -785,23 +837,22 @@
                 
                 
                 <h1 id="introduction">Introduction</h1>
-<p>This is an introduction to Link for users of Dyalog APL installations that include Link 3.0 (version 18.1 or later). If you have an earlier version of APL or Link, you may want to check out one or more of the following pages before continuing: </p>
+<p>Link version 3.0 is included with Dyalog version 18.1. If you have an earlier version of APL or Link, you may want to check out one or more of the following pages before continuing: </p>
 <ul>
-<li><a href="Upgradeto30/">Migrating to Link 3.0 from from Link 2.0</a></li>
-<li><a href="GettingStarted/SALTtoLink/">Migrating to Link 3.0 from SALT</a></li>
-<li><a href="GettingStarted/Installation/">Installation instructions:</a> If you want to pick Link up directly from the GitHub repository rather than use the version installed with APL.</li>
-<li><a href="Discussion/HowDoesItWork/">How does Link work?</a> If you are one of those people who cannot comfortably use a tool until they understand the technical details of how it works, start here.</li>
+<li><a href="Upgradeto30/">Migrating to Link 3.0 from from Link 2.0:</a> If you are already using an earlier version of Link.</li>
+<li><a href="GettingStarted/SALTtoLink/">Migrating to Link 3.0 from SALT:</a> If you have APL source in text files managed by SALT that you want to migrate to Link.</li>
+<li><a href="GettingStarted/Installation/">Installation instructions:</a> If you want to pick Link up directly from the GitHub repository rather than use the version installed with APL, for example if you want to use Link 3.0 with Dyalog version 18.0.</li>
 <li><a href="Discussion/History/">The historical perspective:</a> Link is a step on a journey which begins more than a decade ago with the introduction of SALT for managing source code in text files, as an alternative to binary workspaces and files, and will hopefully end with the interpreter handling everything itself.</li>
 </ul>
 <h2 id="what-is-link">What is Link?</h2>
-<p><strong><em>Link</em></strong> supports Unicode text files as the recommended way to store APL source code, rather than the traditional binary workspace. The benefits of using Link and text files include:</p>
+<p><strong><em>Link</em></strong> allows you to use Unicode text files to store APL source code, rather than "traditional" binary workspaces. The benefits of using Link and text files include:</p>
 <ul>
 <li>It is easy to use source code management tools like Git or Subversion to manage your code.</li>
 </ul>
 <p><em>Note that an SCM is not a requirement for using Link</em>; without an SCM you just need your own strategy for taking suitable copies of your source files, as your would with workspaces.</p>
 <ul>
 <li>
-<p>Changes to your code are <strong>immediately</strong> written to file: there is no need to remember to save your work. You normally make the record permanent with a <em>commit</em> to your source code management system.</p>
+<p>Changes to your code are <strong>immediately</strong> written to file: there is no need to remember to save your work. The assumption is that you will make the record permanent with a <em>commit</em> to your source code management system, when the time is right.</p>
 </li>
 <li>
 <p>Unlike binary workspaces, text source can be shared between different versions of APL - or even with human readers or writers don't have APL installed at all.</p>
@@ -827,14 +878,27 @@ Any changes made to code in the active workspace using the tracer and editor are
 <li><strong>Keep the Workspace up-to-date:</strong>
 Any changes made to the external files using a text editor, or resulting from an SCM action such as rolling back or switching to different branch, will immediately be reflected in the active workspace.</li>
 </ul>
-<p>You can invoke <code>]Link.Create</code>several times to create multiple links, and you can also use <code>]Link.Import</code>or <code>]Link.Export</code> to import source code into the workspace or export code to external files <em>without</em> creating links that will respond to subsequent changes. It is also possible to set links up that only react to changes at one end of the link.</p>
-<h2 id="link-functions-vs-user-commands">Link Functions vs. User Commands</h2>
-<p>For every user command like <code>]Link.Create</code>, there is a corresponding function with a name like <code>⎕SE.Link.Create</code>.  The user commands are intended for experimentation or simple applications which do consist of a single directory and are only used interactively.</p>
-<p>If there are several steps involved in creating your application runtime environment, or you need to deploy your application in such a way that it starts up automatically, you will be better off using the functions and calling them from a function or script that you use to perform initialisation.</p>
+<p>You can invoke <code>]Link.Create</code>several times to create multiple links, and you can also use <code>]Link.Import</code>or <code>]Link.Export</code> to import source code into the workspace or export code to external files <em>without</em> creating links that will respond to subsequent changes. </p>
+<h2 id="functions-vs-user-commands">Functions vs. User Commands</h2>
+<p>Before we move on to look at creating some links, a few words about the two ways that Link functionality can be accessed. With a few exceptions, each <a href="API/">Link API function</a> has a corresponding User Command, designed to make the functionality slightly easier to use interactively.</p>
+<h3 id="user-commands">User commands</h3>
+<p>The user commands have the general syntax</p>
+<pre><code>     ]LINK.CmdName arg1 [arg2] [-name[=value] ...]
+</code></pre>
+<p>where <code>arg2</code>'s presence depends on the specific command, and <code>-name</code> is a flag enabling the specific option and <code>-name=value</code> sets the specific option to a specific value. Some options (like <code>codeExtensions</code> and <code>typeExtensions</code>) require an array of values: in these cases the user commands typically take the <em>name</em> of a variable containing the needed array.</p>
+<p>For a list of installed user commands, type:</p>
+<pre><code class="language-apl">     ]link .?
+</code></pre>
+<h3 id="api-functions">API Functions</h3>
+<p>The API is designed for use under programme control, and options are provided in an optional namespace passed as the left argument. The general syntax of the utility functions is</p>
+<pre><code class="language-apl">     options FnName arg
+</code></pre>
+<p>where <code>options</code> is a namespace with variables named according to the option they set, containing their corresponding values. The <code>-name=value</code> option can be set by <code>options.name←value</code>, and switches with values (e.g. <code>-name</code>) can be set by <code>options.name←1</code>. Unset options will assume their default value (just like omitted modifiers in the user command).</p>
 <p>The details of the arguments to the functions and the user commands can be found in the <a href="API/">API Reference</a>.</p>
 <h2 id="further-reading">Further Reading</h2>
 <p>To continue your journey towards getting set up with Link, you will want to read:</p>
 <ul>
+<li><a href="GettingStarted/">Getting Started</a>, to see how to set up your first links, and learn about exporting existing application code to source files.</li>
 <li><a href="GettingStarted/Setup/">Setting up your environment</a>, for a discussion of how to set up Link-based development and runtime environments.</li>
 <li><a href="Discussion/TechDetails/">Technical Details and Limitations</a>, if you want to know about the full range of APL objects that are supported, and some of the edge cases that are not yet supported by Link.</li>
 </ul>
@@ -845,9 +909,9 @@ Any changes made to the external files using a text editor, or resulting from an
 </ul>
 <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
 <ul>
-<li><a href="Discussion/HowDoesItWork/">How does Link work?</a></li>
 <li><a href="Discussion/Workspaces/">What happens if I save a workspace after creating Links?</a></li>
 <li><a href="Discussion/Workspaces/">Are workspaces dead now?</a></li>
+<li><a href="Discussion/HowDoesItWork/">How is Link implemented?</a></li>
 </ul>
                 
               

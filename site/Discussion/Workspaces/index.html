@@ -218,7 +218,7 @@
   
     <li class="md-nav__item">
       <a href="../../GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -591,6 +591,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../API/Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../API/Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -763,8 +775,8 @@
 </ul>
 <p>With the exception of the scenarios mentioned above, Link is intended to make it unnecessary to save workspaces. All source code changes that you make while editing or tracing your code should immediately end up in text files and be managed using an SCM. The normal workflow is to start each APL session by loading the code into the workspace from source directories. You might want to save a "stub" workspace that contains a very small amount of code that loads everything else from text source, but from version 18.0 of Dyalog APL you can now <a href="/GettingStarted/Setup.md">easily set that up using text files as well</a>, rendering workspaces obsolete as part of your normal development workflow.</p>
 <h3 id="saving-workspaces-containing-links">Saving workspaces containing Links</h3>
-<p>If you <code>)SAVE</code> a workspace which has active links in it, this creates a potentially confusing situation. Objects defined in the workspace will still contain the information that was created by <code>2 ⎕FIX</code>,  which means that after a re-load, editing may cause the editor itself to update the source files, even though Link has not been activated. If you reload the workspace on a different machine, the source files may not be available, leading to confusing error messages.</p>
-<p>It at all possible,  you should always either Pause or Break links before saving a workspace.</p>
+<p>If you do <code>)SAVE</code> a workspace which has active links in it, this creates a potentially confusing situation. Objects defined in the workspace will still contain the information that was created by <code>2 ⎕FIX</code>,  which means that after a re-load, editing may cause the editor itself to update the source files, even though Link has not been activated. If you reload the workspace on a different machine, the source files may not be available, leading to confusing error messages.</p>
+<p>You should always <a href="/API/Link.Break">Link.Break</a> or <a href="/API/Link.Resync">Link.Resync</a> after loading a workspace which was saved with links in it.</p>
                 
               
               

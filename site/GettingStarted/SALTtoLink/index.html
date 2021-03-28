@@ -220,7 +220,7 @@
   
     <li class="md-nav__item">
       <a href="../Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -626,6 +626,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../API/Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../API/Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -826,12 +838,12 @@
 <p>If you have been using SALT (<a href="/History.md">Link's direct predecessor</a>) to maintain the source of your application, the good news is that nearly all your source files already have a format which can be used directly with Link (with the exception of source files containing arrays). </p>
 <p>There are a few issues that may require some work to sort out.</p>
 <h4 id="no-version-control-features">No Version Control Features</h4>
-<p>SALT includes primitive version control features, such as storing multiple versions of the source for a single function, injecting sequence numbers into the file names, and comparing different versions. Link assumes that you will use an external SCM like Git or SVN, and contains no version control features of its own.</p>
+<p>SALT includes primitive version control features, such as storing multiple versions of the source for a single function by creating file names containing sequence numbers, and providing tools to compare different versions. Link assumes that you will use an external SCM like Git or SVN, and contains no version control features of its own.</p>
 <h4 id="different-api">Different API</h4>
 <p>Obviously, you need to replace all calls to SALT functions like <code>⎕SE.SALT.Load</code> with calls to <code>⎕SE.Link.Create</code> or <code>⎕SE.Link.Import</code>.</p>
 <h4 id="file-name-extensions">File Name Extensions</h4>
-<p>SALT uses the extension of <code>.dyalog</code> for all source files including arrays. Link will load <code>.dyalog</code> files and, if you edit existing objects the correct file name will be updated. However, if you create any new names, the new files will have extensions that vary by type, for example <code>.aplf</code> for functions, <code>.apln</code> for namespaces, or <code>.apla</code> for arrays.</p>
-<p>You can change all the extensions to the Link defaults by creating a link using the <a href="/API/Link.Create.md">forcefilenames</a> switch. Remember to take a backup before you cause such a sweeping change to your source files!</p>
+<p>SALT uses the extension of <code>.dyalog</code> for all source files including arrays. Link will load <code>.dyalog</code> files and, if you edit existing objects the source file will be updated. However, if you create any new items, all new files will have extensions that vary by type, for example <code>.aplf</code> for functions, <code>.apln</code> for namespaces, or <code>.apla</code> for arrays.</p>
+<p>You can rename all your source files to the Link defaults in one operation by creating a link using the <a href="/API/Link.Create.md">forcefilenames</a> switch. Remember to take a backup before you cause such a sweeping change to your source files!</p>
 <h4 id="dyappfiles"><code>.dyapp</code>Files</h4>
 <p>With version 18.0, you can launch the APL interpreter using any APL source file, or a configuration file. As a result, <code>.dyapp</code> files are now deprecated. The section on <a href="../Setup/">setting up your environment</a> contains examples of using the new mechanisms to launch your application.</p>
 <h4 id="arrays">Arrays</h4>

@@ -218,7 +218,7 @@
   
     <li class="md-nav__item">
       <a href="../../GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -582,6 +582,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -737,14 +749,14 @@
 </code></pre>
 <p>This function is intended as a replacement for the system
 function <code>⎕EX</code> in tools that manage code. It removes an item from the workspace and also deletes the corresponding source file.</p>
-<p>If you manually <code>⎕EX</code> or <code>)ERASE</code> items, you can subsequently call Expunge to maintain synchronisation.</p>
+<p>If you manually <code>)ERASE</code> items, you can subsequently call Expunge to remove the source file.</p>
 <h4 id="arguments">Arguments</h4>
 <ul>
 <li>APL item name(s)</li>
 </ul>
 <h4 id="result">Result</h4>
 <ul>
-<li>Simple Boolean vector with one element per name in Y.</li>
+<li>Simple Boolean vector with one element per name in the right argument.</li>
 </ul>
 <blockquote>
 <p>The value of an element of the result is 1 if the corresponding name is now available for use.  This does not necessarily mean that the existing value was erased for that name.  A value of  0 is returned for an ill-formed name or for a distinguished name in the argument.</p>

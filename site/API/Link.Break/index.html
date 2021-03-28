@@ -218,7 +218,7 @@
   
     <li class="md-nav__item">
       <a href="../../GettingStarted/Setup/" class="md-nav__link">
-        Setup
+        Setting up your Environment
       </a>
     </li>
   
@@ -589,6 +589,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../Link.LaunchDir/" class="md-nav__link">
+        Link.LaunchDir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Link.Notify/" class="md-nav__link">
         Link.Notify
       </a>
@@ -749,16 +761,15 @@
 
 msg ← {opts} ⎕SE.Link.Break ns
 </code></pre>
-<p>Breaks an existing link: Does not affect the contents of the active workspace, but removes
-all traces of the link, preventing any further synchronisation from taking place.</p>
+<p>Breaks an existing link: Does not affect the contents of the active workspace except to remove all traces of the link, preventing any further synchronisation from taking place.</p>
 <h4 id="arguments">Arguments</h4>
 <ul>
 <li>namespace name(s) or reference(s)</li>
 </ul>
 <h4 id="options">Options</h4>
 <ul>
-<li><code>all</code>: Break all existing links (arguments are then irrelevant)</li>
-<li><code>recursive</code> {on|off|<strong>error</strong>}: Break children namespaces too if some have their own links to their own directories</li>
+<li><code>all</code>: Break all existing links (arguments are ignored)</li>
+<li><code>recursive</code> {on|off|<strong>error</strong>}: Break child namespaces too if they have separately defined links.</li>
 </ul>
 <h4 id="result">Result</h4>
 <ul>
